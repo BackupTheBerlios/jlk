@@ -2,3 +2,28 @@ JLK is provided under the Apache License, Version 2.0.
 
 This file is the placeholder for the attribution notices according to 
 the Apache License, Version 2.0  4.d 
+
+--
+Also under the Apache License, Version 2.0
+* log4j-1.2.8.jar contains the "Log4J" logging framework. 
+  homepage: http://logging.apache.org/log4j/1.2/index.html 
+
+----
+Third-party libraries, distributed under different licenses: 
+
+* h2.jar contains the "H2 Database Engine"
+  homepage: http://www.h2database.com/
+  This software is employed to store the data and is covered by its own license, 
+  the "H2 License, Version 1.0" (http://www.h2database.com/html/license.html).
+  This is a modified version of the Mozilla Public License 1.1. 
+
+* jcommon-1.0.12.jar contains the "JCommon" classes 
+  homepage: http://www.jfree.org/jcommon/index.php
+  This software provides some utility classes and is covered by the 
+  GNU Lesser General Public License (LGPL) version 2.1 (http://www.jfree.org/lgpl.php)
+
+* junit.jar contains the "JUnit" test framework
+  homepage: http://sourceforge.net/projects/junit/ 
+  This software is employed in the automated unit tests during the build process.
+  It is covered by the Common Public License 1.0 (http://www.opensource.org/licenses/cpl1.0.php)
+  

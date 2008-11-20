@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+   Copyright 2008, Stephan Gross
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+     $Id: build.xml,v 1.1 2008/11/20 11:21:28 sgrossnw Exp $
+
+     JLK
+     Java Lieder Katalog
+
+     Stephan
+     ====================================================================== -->
+<project name="JLK" default="build">
+    <description>
+            JLK Anwendung
+    </description>
+
+	<property name="build.dir" location="build"/>
+	<property name="build.classes.dir" location="${build.dir}/classes"/>
+	<property name="build.test.dir" location="${build.dir}/tests"/>
+	<property name="archive.name" value="jlk.jar"/>
+	<property name="src.dir" location="src"/>
+	<property name="src.test.dir" location="tests"/>
+	<property name="lib.dir" location="libs"/>
+	
+	<path id="build.path" description="needed libs for compiling the application">
+		<fileset dir="${lib.dir}">
+			<!-- logging -->
+			<include name="log4j-1.2.8.jar"/>
+			
+			<!-- von JFreeChart -->
+			<include name="jcommon-1.0.12.jar"/>
+		</fileset>
+	</path>
+
+	<path id="jdbc.driver" description="needed libs for JDBC access during runtime">
+		<fileset dir="${lib.dir}">
+			<include name="h2.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="buildtest.path" description="needed libs for compiling and running the tests">
+		<path refid="build.path"/>
+		<path refid="jdbc.driver"/>
+		<path location="${build.classes.dir}" />
+		<fileset dir="${lib.dir}">
+			<include name="junit.jar"/>
+		</fileset>
+	</path>
+	
+	<target name="clean" >
+		<delete dir="${build.dir}" />
+	</target>
+	
+    <target name="init" description="initializes build structure" >
+        <mkdir dir="${build.dir}"/>
+    	<mkdir dir="${build.classes.dir}"/>
+    	<mkdir dir="${build.test.dir}" />
+    </target>
+
+    <target name="checkout" description="at the moment empty" depends="init" >
+        
+    </target>
+
+	<target name="compile" description="compile sources" depends="init">
+        <javac 
+         destdir="${build.classes.dir}"
+       	 srcdir="${src.dir}"
+         debug="on" >
+        	<classpath refid="build.path" />
+		</javac>
+
+        <javac 
+         destdir="${build.test.dir}"
+         debug="on" 
+         srcdir="${src.test.dir}">
+        	<classpath refid="buildtest.path" />
+		</javac>
+	</target>
+
+    <target name="build" description="build a JAR" depends="compile">
+    	<jar file="${archive.name}" basedir="${build.classes.dir}">
+    		<manifest>
+    			<attribute name="application" value="EvJ NW JLK" />
+    			<attribute name="version" value="0.1"/>
+    			<attribute name="license" value="Apache License, Version 2.0"/>
+    		</manifest>
+    	</jar>
+    </target>
+
+</project>
