@@ -14,9 +14,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: LiedBrowser.java,v 1.1 2008/11/20 11:21:28 sgrossnw Exp $
+   $Id: LiedBrowser.java,v 1.2 2008/11/21 19:29:53 sgrossnw Exp $
  */
 package de.evjnw.jlk;
+
+import org.apache.log4j.Logger;
+
 
 /**
  * This class is the entry point to the JLK application
@@ -25,11 +28,13 @@ package de.evjnw.jlk;
  */
 public class LiedBrowser {
 
+	private static final Logger log = Logger.getLogger(LiedBrowser.class);
+	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		log.info("JLK Lied Browser startet");
 
 	}
 
