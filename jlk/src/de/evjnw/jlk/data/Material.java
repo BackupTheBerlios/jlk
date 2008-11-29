@@ -14,11 +14,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Material.java,v 1.1 2008/11/28 13:25:44 ma08 Exp $
+   $Id: Material.java,v 1.2 2008/11/29 14:29:16 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 import java.util.*;
 /**
+ *  Die Klasse Material dient zum Bündeln von Anhängen. Jedes Lied muss mindestens ein Material haben
+ *  (eine Stelle aus einem Liederheft). Dieses Material (z.B. Notenblatt) wird dann verwertet
+ *  um eine Präsentation vorzubereiten. Dies wäre dann ein Anhang.
+ *  @author Mario Aldag
 */
 public class Material extends DataModell{
 /**
