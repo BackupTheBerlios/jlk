@@ -14,32 +14,32 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Benutzer.java,v 1.1 2008/11/28 13:25:44 ma08 Exp $
+   $Id: Benutzer.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
  */
 package de.evjnw.jlk.data;
 import java.util.*;
 /**
- * @author Mario Aldag
  * Diese Datenklasse beschreibt den Benutzer.
  * Der Benutzer kann hier auch seine Favoriten und Suchen speichern. 
+ * @author Mario Aldag
 */
 public class Benutzer{
 
-private String Vorname;
-private String Nachname;
-private String Passwort;
+private String vorname;
+private String nachname;
+private String passwort;
 /**
  * Letzter Login des Benutzers. Wird für die Teaser benötigt.
 */
-private int LastLogin;
+private int lastLogin;
 /**
  * Seine Liste mit Favoriten
 */
-private List<Favoriten> Favoriten;
+private List<Favoriten> favoriten;
 /**
  * Seine Liste mit gespeicherten Suchen.
 */
-private List<Suche> Suche;
+private List<Suche> suche;
 
 /**
  * Einen Benutzer erzeugen
@@ -59,75 +59,75 @@ public Benutzer(String Vorname, String Nachname){
  * @return the vorname
  */
 public String getVorname() {
-	return Vorname;
+	return vorname;
 }
 /**
  * @param vorname the vorname to set
  */
 public void setVorname(String vorname) {
-	Vorname = vorname;
+	this.vorname = vorname;
 }
 /**
  * @return the nachname
  */
 public String getNachname() {
-	return Nachname;
+	return nachname;
 }
 /**
  * @param nachname the nachname to set
  */
 public void setNachname(String nachname) {
-	Nachname = nachname;
+	this.nachname = nachname;
 }
 /**
  * @return the passwort
  */
 public String getPasswort() {
-	return Passwort;
+	return passwort;
 }
 /**
  * @param passwort the passwort to set
  */
 private void setPasswort(String passwort) {
-	Passwort = passwort;
+	this.passwort = passwort;
 }
 /**
  * @return the lastLogin
  */
 public int getLastLogin() {
-	return LastLogin;
+	return lastLogin;
 }
 /**
  * @param lastLogin the lastLogin to set
  */
 public void setLastLogin(int lastLogin) {
-	LastLogin = lastLogin;
+	this.lastLogin = lastLogin;
 }
 /**
  * @return the favoriten
  */
 public List<Favoriten> getFavoriten() {
-	return Favoriten;
+	return favoriten;
 }
 /**
  * @param favoriten the favoriten to set
  */
 public void setFavoriten(List<Favoriten> favoriten) {
-	Favoriten = favoriten;
+	this.favoriten = favoriten;
 }
 
 /**
  * @param suche the suche to set
  */
 public void setSuche(List<Suche> suche) {
-	Suche = suche;
+	this.suche = suche;
 }
 
 /**
  * @return the suche
  */
 public List<Suche> getSuche() {
-	return Suche;
+	return suche;
 }
 
 

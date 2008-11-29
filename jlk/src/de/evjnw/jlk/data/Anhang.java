@@ -14,44 +14,44 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Anhang.java,v 1.1 2008/11/28 13:25:44 ma08 Exp $
+   $Id: Anhang.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
  */
 package de.evjnw.jlk.data;
 /**
- * @author Mario Aldag
  * Diese Datenklasse beschreibt die Dateianhänge und speichert den Link zu der Datei
-*/
+ * @author Mario Aldag
+ */
 public class Anhang extends DataModell{
 
 	/**
 	 * Der Titel des Anhangs. 
 	*/
-	private String Titel;
+	private String titel;
 	
 	/**
 	 * Eine Kurzbeschreibung. Diese kann vom Benutzer auch zum kommentieren genutzt werden. 
 	*/
-	private String Beschreibung;
+	private String beschreibung;
 	/**
 	 * Der Link zu der Datei. 
 	*/
-	private String Link;
+	private String link;
 	/**
 	 * Die Sprache des Liedgutes. (Deutsch, Englisch,...)
 	*/
-	private String Textsprache;
+	private String textsprache;
 	/**
 	 * Der Aufbau des Gesangs (einstimmig, mehrstimmig).
 	*/
-	private String Gesang;
+	private String gesang;
 	/**
 	 * Was für Akkorde sind verfügbar? (Tabulatoren, Akkorddiagramme,...)
 	*/
-	private String Akkordart;
+	private String akkordart;
 	/**
 	 * Was für einen Notensatz haben wir? (Partitur, Klavierauszug, ...)
 	*/
-	private String Notensatz;
+	private String notensatz;
 	
 	/**
 	 * 
@@ -80,85 +80,85 @@ public class Anhang extends DataModell{
 	 * @return the titel
 	 */
 	public String getTitel() {
-		return Titel;
+		return titel;
 	}
 	/**
 	 * @param titel the titel to set
 	 */
 	public void setTitel(String titel) {
-		Titel = titel;
+		this.titel = titel;
 	}
 	/**
 	 * @return the beschreibung
 	 */
 	public String getBeschreibung() {
-		return Beschreibung;
+		return beschreibung;
 	}
 	/**
 	 * @param beschreibung the beschreibung to set
 	 */
 	public void setBeschreibung(String beschreibung) {
-		Beschreibung = beschreibung;
+		this.beschreibung = beschreibung;
 	}
 	/**
 	 * @return the link
 	 */
 	public String getLink() {
-		return Link;
+		return link;
 	}
 	/**
 	 * @param link the link to set
 	 */
 	public void setLink(String link) {
-		Link = link;
+		this.link = link;
 	}
 	/**
 	 * @return the textsprache
 	 */
 	public String getTextsprache() {
-		return Textsprache;
+		return textsprache;
 	}
 	/**
 	 * @param textsprache the textsprache to set
 	 */
 	public void setTextsprache(String textsprache) {
-		Textsprache = textsprache;
+		this.textsprache = textsprache;
 	}
 	/**
 	 * @return the gesang
 	 */
 	public String getGesang() {
-		return Gesang;
+		return gesang;
 	}
 	/**
 	 * @param gesang the gesang to set
 	 */
 	public void setGesang(String gesang) {
-		Gesang = gesang;
+		this.gesang = gesang;
 	}
 	/**
 	 * @return the akkordart
 	 */
 	public String getAkkordart() {
-		return Akkordart;
+		return akkordart;
 	}
 	/**
 	 * @param akkordart the akkordart to set
 	 */
 	public void setAkkordart(String akkordart) {
-		Akkordart = akkordart;
+		this.akkordart = akkordart;
 	}
 	/**
 	 * @return the notensatz
 	 */
 	public String getNotensatz() {
-		return Notensatz;
+		return notensatz;
 	}
 	/**
 	 * @param notensatz the notensatz to set
 	 */
 	public void setNotensatz(String notensatz) {
-		Notensatz = notensatz;
+		this.notensatz = notensatz;
 	}
 	
 }

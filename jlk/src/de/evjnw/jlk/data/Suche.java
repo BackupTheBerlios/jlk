@@ -14,39 +14,39 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Suche.java,v 1.1 2008/11/28 13:25:44 ma08 Exp $
+   $Id: Suche.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
  */
 package de.evjnw.jlk.data;
 import java.text.DateFormat;
 /**
- * @author Mario Aldag
  * Diese Klasse wird mit den Suchdaten gefüttert um dann die Suche auszuführen.
+ * @author Mario Aldag
 */
 public class Suche{
 /**
  * Der Suchstring, nach dem gesucht werden soll.
 */
-private String Suchtext;
+private String suchtext;
 /**
  * Eine Sortierung?
 */
-private String Reihenfolge;
+private String reihenfolge;
 /**
  * Wie viele Ergebnisse pro Seite
 */
-private int ErgebnisseproSeite;
+private int ergebnisseProSeite;
 /**
  * Das aktuelle Datum der Suche
 */
-private int Datum;
+private int datum;
 /**
  * Wenn die Suche gespeichert werden soll, kann der Benutzer der Suche einen Namen geben
 */
-private String Titel;
+private String titel;
 /**
  * Der Benutzer, der die Suche ausführt. 
 */
-private String Benutzer;
+private String benutzer;
 
 /**
  * Der Standardkonstruktor. Er fügt defaultmäßig 10 Ergebnisse pro Seite, bei "ASC" Sortierung ein.
@@ -55,11 +55,11 @@ private String Benutzer;
  */
 public Suche(String Suchtext){
 	this.setSuchtext(Suchtext);
-	this.Datum=DateFormat.SHORT;
+	this.datum=DateFormat.SHORT;
 	
 	//Defaultwerte für den Rest setzen, damit Suche ausgeführt werden kann
 	this.setReihenfolge("ASC");
-	this.setErgebnisseproSeite(10);
+	this.setErgebnisseProSeite(10);
 	this.setBenutzer("ANONYMUS");
 }
 
@@ -67,77 +67,77 @@ public Suche(String Suchtext){
  * @return the suchtext
  */
 public String getSuchtext() {
-	return Suchtext;
+	return suchtext;
 }
 
 /**
  * @param suchtext the suchtext to set
  */
 public void setSuchtext(String suchtext) {
-	Suchtext = suchtext;
+	this.suchtext = suchtext;
 }
 
 /**
  * @return the reihenfolge
  */
 public String getReihenfolge() {
-	return Reihenfolge;
+	return reihenfolge;
 }
 
 /**
  * @param reihenfolge the reihenfolge to set
  */
 public void setReihenfolge(String reihenfolge) {
-	Reihenfolge = reihenfolge;
+	this.reihenfolge = reihenfolge;
 }
 
 /**
  * @return the ergebnisseproSeite
  */
-public int getErgebnisseproSeite() {
-	return ErgebnisseproSeite;
+public int getErgebnisseProSeite() {
+	return ergebnisseProSeite;
 }
 
 /**
  * @param ergebnisseproSeite the ergebnisseproSeite to set
  */
-public void setErgebnisseproSeite(int ergebnisseproSeite) {
-	ErgebnisseproSeite = ergebnisseproSeite;
+public void setErgebnisseProSeite(int ergebnisseproSeite) {
+	ergebnisseProSeite = ergebnisseproSeite;
 }
 
 /**
  * @return the titel
  */
 public String getTitel() {
-	return Titel;
+	return titel;
 }
 
 /**
  * @param titel the titel to set
  */
 public void setTitel(String titel) {
-	Titel = titel;
+	this.titel = titel;
 }
 
 /**
  * @return the benutzer
  */
 public String getBenutzer() {
-	return Benutzer;
+	return benutzer;
 }
 
 /**
  * @param benutzer the benutzer to set
  */
 public void setBenutzer(String benutzer) {
-	Benutzer = benutzer;
+	this.benutzer = benutzer;
 }
 
 /**
  * @return the datum
  */
 public int getDatum() {
-	return Datum;
+	return datum;
 }
 
 

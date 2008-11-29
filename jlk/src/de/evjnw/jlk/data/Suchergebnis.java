@@ -14,29 +14,29 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Suchergebnis.java,v 1.1 2008/11/28 13:25:44 ma08 Exp $
+   $Id: Suchergebnis.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
  */
 package de.evjnw.jlk.data;
 /**
- * @author Mario Aldag
  * Diese Klasse stellt das Suchergebnis dar und wird von der Suchmethode aufgerufen,
  * die von der Klasse Suche eine Suche erhält. 
  * 
-*/
+ * @author Mario Aldag
+ */
 public class Suchergebnis{
 /**
  * Die alte Suche wird hier gespeichert.
 */
-private Suche Suche;
+private Suche suche;
 
 /**
  * Das Ergebnis als mehrdimensionaler String für eine tabellarische Übersicht.
 */
-private String[][] Ergebnis;
+private String[][] ergebnis;
 /**
  * Die Dauer der Suchanfrage
 */
-private int Dauer;
+private int dauer;
 
 /**
  * 
@@ -44,8 +44,8 @@ private int Dauer;
  * @param Ergebnis
  */
 public Suchergebnis(Suche Suche, String[][] Ergebnis){
-	this.Suche=Suche;
-	this.Ergebnis=Ergebnis;
+	this.suche=Suche;
+	this.ergebnis=Ergebnis;
 	this.setDauer(0);
 }
 
@@ -53,41 +53,41 @@ public Suchergebnis(Suche Suche, String[][] Ergebnis){
  * @return the dauer
  */
 public int getDauer() {
-	return Dauer;
+	return dauer;
 }
 
 /**
  * @param dauer the dauer to set
  */
 public void setDauer(int dauer) {
-	Dauer = dauer;
+	this.dauer = dauer;
 }
 /**
  * @return the suche
  */
 public Suche getSuche() {
-	return Suche;
+	return suche;
 }
 
 /**
  * @return the ergebnis
  */
 public String[][] getErgebnis() {
-	return Ergebnis;
+	return ergebnis;
 }
 
 /**
  * @param suche the suche to set
  */
 public void setSuche(Suche suche) {
-	Suche = suche;
+	this.suche = suche;
 }
 
 /**
  * @param ergebnis the ergebnis to set
  */
 public void setErgebnis(String[][] ergebnis) {
-	Ergebnis = ergebnis;
+	this.ergebnis = ergebnis;
 }
 
 }

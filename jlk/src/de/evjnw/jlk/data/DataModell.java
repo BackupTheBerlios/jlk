@@ -14,15 +14,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: DataModell.java,v 1.1 2008/11/28 13:25:44 ma08 Exp $
+   $Id: DataModell.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
  */
 package de.evjnw.jlk.data;
 import java.text.*;
 /**
- * @author Mario Aldag
  * Die SuperKlasse, die Attribute zur Verfügung stellt, die alle brauchen.
+ * @author Mario Aldag
 */
-public class DataModell{
+public abstract class DataModell{
 /**
  * Id für die Datenbank
 */
@@ -33,10 +33,10 @@ private int id;
 private int version;
 /**
 */
-private int Hinzugefuegt_am;
+private int hinzugefuegtAm;
 /**
 */
-private String Hinzugefuegt_durch;
+private String hinzugefuegtDurch;
 
 /**
  * Konstruktor
@@ -45,12 +45,12 @@ private String Hinzugefuegt_durch;
 public DataModell(String durch){
 	//this.id=
 	//this.version=
-	this.setHinzugefuegt_am(DateFormat.SHORT);
-	this.setHinzugefuegt_durch(durch);
+	this.setHinzugefuegtAm(DateFormat.SHORT);
+	this.setHinzugefuegtDurch(durch);
 	
 }
 public DataModell(){
-	this.setHinzugefuegt_am(DateFormat.SHORT);
+	this.setHinzugefuegtAm(DateFormat.SHORT);
 }
 /**
  * @return the id
@@ -83,29 +83,29 @@ public void setVersion(int version) {
 /**
  * @return the hinzugefuegt_am
  */
-public int getHinzugefuegt_am() {
-	return Hinzugefuegt_am;
+public int getHinzugefuegtAm() {
+	return hinzugefuegtAm;
 }
 
 /**
  * @param hinzugefuegt_am the hinzugefuegt_am to set
  */
-public void setHinzugefuegt_am(int hinzugefuegt_am) {
-	Hinzugefuegt_am = hinzugefuegt_am;
+public void setHinzugefuegtAm(int hinzugefuegt_am) {
+	hinzugefuegtAm = hinzugefuegt_am;
 }
 
 /**
  * @return the hinzugefuegt_durch
  */
-public String getHinzugefuegt_durch() {
-	return Hinzugefuegt_durch;
+public String getHinzugefuegtDurch() {
+	return hinzugefuegtDurch;
 }
 
 /**
  * @param hinzugefuegt_durch the hinzugefuegt_durch to set
  */
-public void setHinzugefuegt_durch(String hinzugefuegt_durch) {
-	Hinzugefuegt_durch = hinzugefuegt_durch;
+public void setHinzugefuegtDurch(String hinzugefuegt_durch) {
+	hinzugefuegtDurch = hinzugefuegt_durch;
 }
 
 }

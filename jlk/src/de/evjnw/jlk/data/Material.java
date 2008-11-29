@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Material.java,v 1.2 2008/11/29 14:29:16 ma08 Exp $
+   $Id: Material.java,v 1.3 2008/11/29 23:58:17 sgrossnw Exp $
  */
 package de.evjnw.jlk.data;
 import java.util.*;
@@ -28,31 +28,31 @@ public class Material extends DataModell{
 /**
  * Das Musikbuch aus dem das Lied kopiert worden ist.
 */
-private String Buch;
+private String buch;
 /**
  * Der Titel
 */
-private int Seite;
+private int seite;
 /**
  * Die Seite in dem Buch
 */
-private String Art;
+private String art;
 /**
  * Die Tonart des Materials
 */
-private String Tonart;
+private String tonart;
 /**
  * Der Takt des Materials
 */
-private String Takt;
+private String takt;
 /**
  * Die Akkorde
 */
-private String Akkorde;
+private String akkorde;
 /**
  * Jedes Material hat den Anhang. Also die umgesetzten (digitalisierten) Medien als Beispiel.
  */
-private List<Anhang> Anhang;
+private List<Anhang> anhang;
 
 /**
  * 
@@ -71,98 +71,98 @@ public Material(String durch,String Buch, int Seite){
  * @return the buch
  */
 public String getBuch() {
-	return Buch;
+	return buch;
 }
 
 /**
  * @param buch the buch to set
  */
 public void setBuch(String buch) {
-	Buch = buch;
+	this.buch = buch;
 }
 
 /**
  * @return the seite
  */
 public int getSeite() {
-	return Seite;
+	return seite;
 }
 
 /**
  * @param seite the seite to set
  */
 public void setSeite(int seite) {
-	Seite = seite;
+	this.seite = seite;
 }
 
 /**
  * @return the art
  */
 public String getArt() {
-	return Art;
+	return art;
 }
 
 /**
  * @param art the art to set
  */
 public void setArt(String art) {
-	Art = art;
+	this.art = art;
 }
 
 /**
  * @return the tonart
  */
 public String getTonart() {
-	return Tonart;
+	return tonart;
 }
 
 /**
  * @param tonart the tonart to set
  */
 public void setTonart(String tonart) {
-	Tonart = tonart;
+	this.tonart = tonart;
 }
 
 /**
  * @return the takt
  */
 public String getTakt() {
-	return Takt;
+	return takt;
 }
 
 /**
  * @param takt the takt to set
  */
 public void setTakt(String takt) {
-	Takt = takt;
+	this.takt = takt;
 }
 
 /**
  * @return the akkorde
  */
 public String getAkkorde() {
-	return Akkorde;
+	return akkorde;
 }
 
 /**
  * @param akkorde the akkorde to set
  */
 public void setAkkorde(String akkorde) {
-	Akkorde = akkorde;
+	this.akkorde = akkorde;
 }
 
 /**
  * @return the anhang
  */
 public List<Anhang> getAnhang() {
-	return Anhang;
+	return anhang;
 }
 
 /**
  * @param anhang the anhang to set
  */
 public void setAnhang(List<Anhang> anhang) {
-	Anhang = anhang;
+	this.anhang = anhang;
 }
 
 

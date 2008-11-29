@@ -14,21 +14,21 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Synchronisation.java,v 1.1 2008/11/28 13:25:44 ma08 Exp $
+   $Id: Synchronisation.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
  */
 package de.evjnw.jlk.data;
 /**
- * @author Mario Aldag
  * Diese Klasse stellt Informationen zur letzten Syncronisation dar.
  * Ist noch nicht vollständig.
+ * @author Mario Aldag
 */
 public class Synchronisation{
 /**
 */
-private int LetzterSync;
+private int letzterSync;
 /**
 */
-private String Quelle;
+private String quelle;
 
 public Synchronisation(){
 	
@@ -38,28 +38,28 @@ public Synchronisation(){
  * @return the letzterSync
  */
 public int getLetzterSync() {
-	return LetzterSync;
+	return letzterSync;
 }
 
 /**
  * @param letzterSync the letzterSync to set
  */
 public void setLetzterSync(int letzterSync) {
-	LetzterSync = letzterSync;
+	this.letzterSync = letzterSync;
 }
 
 /**
  * @return the quelle
  */
 public String getQuelle() {
-	return Quelle;
+	return quelle;
 }
 
 /**
  * @param quelle the quelle to set
  */
 public void setQuelle(String quelle) {
-	Quelle = quelle;
+	this.quelle = quelle;
 }
 
 }

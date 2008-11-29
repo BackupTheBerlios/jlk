@@ -14,32 +14,32 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Zusammenstellung.java,v 1.1 2008/11/28 13:25:44 ma08 Exp $
+   $Id: Zusammenstellung.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
  */
 
 package de.evjnw.jlk.data;
 import java.util.*;
 /**
- * @author Mario Aldag
  * Diese Klasse beinhaltet Zusammenstellungen. Für Liederhefte oder Songs bei Beatbox oder ähnlichem.
+ * @author Mario Aldag
 */
 public class Zusammenstellung extends DataModell{
 /**
  * Der Titel
 */
-private String Titel;
+private String titel;
 /**
  * Eine Beschreibung der Liste
 */
-private String Beschreibung;
+private String beschreibung;
 /**
  * Eine Liste mit allen zu der Zusammenstellung gehörenden Liedern
 */
-private List<Lied> Lieder;
+private List<Lied> lieder;
 /**
  * Wenn direkte Anhänge zu einer Zusammenstellung vorhanden sind, dann kann man diese hier eintragen.
 */
-private List<Anhang> Anhang;
+private List<Anhang> anhang;
 
 public Zusammenstellung(String durch, String Titel, List<Lied> Lieder){
 	super(durch);
@@ -52,56 +52,56 @@ public Zusammenstellung(String durch, String Titel, List<Lied> Lieder){
  * @return the titel
  */
 public String getTitel() {
-	return Titel;
+	return titel;
 }
 
 /**
  * @param titel the titel to set
  */
 public void setTitel(String titel) {
-	Titel = titel;
+	this.titel = titel;
 }
 
 /**
  * @return the beschreibung
  */
 public String getBeschreibung() {
-	return Beschreibung;
+	return beschreibung;
 }
 
 /**
  * @param beschreibung the beschreibung to set
  */
 public void setBeschreibung(String beschreibung) {
-	Beschreibung = beschreibung;
+	this.beschreibung = beschreibung;
 }
 
 /**
  * @return the lieder
  */
 public List<Lied> getLieder() {
-	return Lieder;
+	return lieder;
 }
 
 /**
  * @param lieder the lieder to set
  */
 public void setLieder(List<Lied> lieder) {
-	Lieder = lieder;
+	this.lieder = lieder;
 }
 
 /**
  * @return the anhang
  */
 public List<Anhang> getAnhang() {
-	return Anhang;
+	return anhang;
 }
 
 /**
  * @param anhang the anhang to set
  */
 public void setAnhang(List<Anhang> anhang) {
-	Anhang = anhang;
+	this.anhang = anhang;
 }
 
 }

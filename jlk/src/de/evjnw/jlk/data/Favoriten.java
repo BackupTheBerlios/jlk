@@ -14,28 +14,28 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Favoriten.java,v 1.1 2008/11/28 13:25:44 ma08 Exp $
+   $Id: Favoriten.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
  */
 package de.evjnw.jlk.data;
 
 
 /**
- * @author Mario Aldag
  * Diese Datenklasse kümmert sich um die Favoriten. Diese erbt nicht von dem DataModell
+ * @author Mario Aldag
 */
 public class Favoriten extends DataModell{
 /**
  * Das Lied, das er in seinen Favoriten haben möchte.
 */
-private Lied Lied;
+private Lied lied;
 /**
  * Seine Bewertung. Dadurch kann der Benutzer Favoriten sortieren.
 */
-private int Bewertung;
+private int bewertung;
 /**
  * Einen Kommentar vielleicht?
 */
-private String Kommentar;
+private String kommentar;
 
 public Favoriten(Lied Lied){
 	super();
@@ -45,37 +45,37 @@ public Favoriten(Lied Lied){
  * @return the lied
  */
 public Lied getLied() {
-	return Lied;
+	return lied;
 }
 /**
  * @param lied the lied to set
  */
 public void setLied(Lied lied) {
-	Lied = lied;
+	this.lied = lied;
 }
 /**
  * @return the bewertung
  */
 public int getBewertung() {
-	return Bewertung;
+	return bewertung;
 }
 /**
  * @param bewertung the bewertung to set
  */
 public void setBewertung(int bewertung) {
-	Bewertung = bewertung;
+	this.bewertung = bewertung;
 }
 /**
  * @return the kommentar
  */
 public String getKommentar() {
-	return Kommentar;
+	return kommentar;
 }
 /**
  * @param kommentar the kommentar to set
  */
 public void setKommentar(String kommentar) {
-	Kommentar = kommentar;
+	this.kommentar = kommentar;
 }
 
 

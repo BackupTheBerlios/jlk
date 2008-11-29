@@ -14,22 +14,23 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Verknuepfung.java,v 1.1 2008/11/28 13:25:44 ma08 Exp $
+   $Id: Verknuepfung.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
  */
 package de.evjnw.jlk.data;
 /**
  * Diese Klasse dient zum Speichern von Verknüpfungen zwischen Liedern.
  * Sie enthält auch eine Methode zum auffinden des anderen Liedes.
+ * @author Mario Aldag
 */
 public class Verknuepfung extends DataModell{
 /**
  * Lied 1
 */
-private Lied Lied1;
+private Lied lied1;
 /**
  * Lied 2
 */
-private Lied Lied2;
+private Lied lied2;
 /**
  * @param ich 
  * @param Return 
@@ -43,16 +44,16 @@ private Lied Lied2;
  */
 public Verknuepfung(Lied Lied1,Lied Lied2,String durch){
 	super(durch);
-	this.Lied1=Lied1;
-	this.Lied2=Lied2;
+	this.lied1=Lied1;
+	this.lied2=Lied2;
 }
 
 public Lied anderesLied(Lied ich) {
-	if(ich.equals(Lied1)){
-		return Lied2;
+	if(ich.equals(lied1)){
+		return lied2;
     }
-	else if(ich.equals(Lied2)){
-		return Lied1;
+	else if(ich.equals(lied2)){
+		return lied1;
 	}
 		return null;
 }
