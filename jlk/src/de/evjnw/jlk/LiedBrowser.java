@@ -14,11 +14,14 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: LiedBrowser.java,v 1.2 2008/11/21 19:29:53 sgrossnw Exp $
+   $Id: LiedBrowser.java,v 1.3 2008/12/01 18:50:27 sgrossnw Exp $
  */
 package de.evjnw.jlk;
 
 import org.apache.log4j.Logger;
+
+import de.evjnw.jlk.ui.Frame;
+import de.evjnw.jlk.work.Controller;
 
 
 /**
@@ -30,12 +33,36 @@ public class LiedBrowser {
 
 	private static final Logger log = Logger.getLogger(LiedBrowser.class);
 	
+	private Frame frame;
+	private Controller controller;
+	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		log.info("JLK Lied Browser startet");
+		LiedBrowser lb = new LiedBrowser();
+		lb.connectModules();
+		lb.presentUI();
+	}
 
+	/**
+	 * Aktiviert das UI und wartet auf Eingaben des Benutzers.
+	 */
+	private void presentUI() {
+		frame.buildUI();
+		frame.presentUI();
+	}
+
+	/**
+	 * Initialisiert die einzelnen Module. 
+	 */
+	private void connectModules() {
+		// TODO hier koennte Spring eingesetzt werden
+		frame = new Frame();
+		controller = new Controller();
+		frame.setPerformer(controller);
+		controller.setVisualizer(frame);
 	}
 
 }
