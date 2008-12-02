@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Lied.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
+   $Id: Lied.java,v 1.3 2008/12/02 17:13:07 sgrossnw Exp $
  */
 package de.evjnw.jlk.data;
 import java.util.*;
@@ -36,12 +36,12 @@ private String thema;
 /**
  * Diese Liste enthält die Materialien. Dies sind die Quellen aus denen das Lied kommt. 
 */
-private List<Material> material;
+private List<Material> material = new ArrayList<Material>();
 /**
  * Diese Liste enthaelt Verknuepfungen zu anderen Liedern. 
  * Diese koennen ähnliche Lieder sein oder Synonime.
 */
-private List<Verknuepfung> verknuepfung;
+private List<Verknuepfung> verknuepfung = new ArrayList<Verknuepfung>();
 /**
  * @return the titel
  */
