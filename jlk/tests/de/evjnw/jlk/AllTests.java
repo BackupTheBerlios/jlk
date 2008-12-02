@@ -14,32 +14,29 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: LiedBrowserTest.java,v 1.2 2008/12/02 17:21:39 sgrossnw Exp $
+   $Id: AllTests.java,v 1.1 2008/12/02 17:21:39 sgrossnw Exp $
  */
 package de.evjnw.jlk;
 
-import junit.framework.TestCase;
+import de.evjnw.jlk.data.LiedTest;
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
 /**
- * This minimalistic unit test is needed by the build script.
- * It should test the correct setup of the application.  
+ * Diese Test-Suite ruft alle UnitTests auf.  
  * 
  * @author Stephan
  */
-public class LiedBrowserTest extends TestCase {
+public class AllTests {
 
-	/** component under test */
-	private LiedBrowser component;
-	
-	protected void setUp() throws Exception {
-		component = new LiedBrowser();
+	public static Test suite() {
+		TestSuite suite = new TestSuite("Test for de.evjnw.jlk");
+		//$JUnit-BEGIN$
+		suite.addTestSuite(LiedBrowserTest.class);
+		
+		suite.addTestSuite(LiedTest.class);
+		//$JUnit-END$
+		return suite;
 	}
 
-	/** 
-	 * testet die 'connectModules()' Methode, ob die Verbindungen zwischen 
-	 * den Systemteilen hergestellt werden koennen
-	 */
-	public void testConnectModules() {
-		component.connectModules();
-	}
 }

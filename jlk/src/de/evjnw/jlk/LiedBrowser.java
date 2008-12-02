@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: LiedBrowser.java,v 1.3 2008/12/01 18:50:27 sgrossnw Exp $
+   $Id: LiedBrowser.java,v 1.4 2008/12/02 17:21:39 sgrossnw Exp $
  */
 package de.evjnw.jlk;
 
@@ -57,7 +57,7 @@ public class LiedBrowser {
 	/**
 	 * Initialisiert die einzelnen Module. 
 	 */
-	private void connectModules() {
+	void connectModules() {
 		// TODO hier koennte Spring eingesetzt werden
 		frame = new Frame();
 		controller = new Controller();
