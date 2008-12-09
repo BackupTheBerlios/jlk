@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: LiedTest.java,v 1.2 2008/12/09 07:54:20 ma08 Exp $
+   $Id: LiedTest.java,v 1.3 2008/12/09 09:26:11 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 
@@ -22,9 +22,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//import org.apache.log4j.Logger;
-
 import junit.framework.TestCase;
+
+import org.apache.log4j.Logger;
 
 /**
  * Ein UnitTest f&uuml;r die Attribute eines Liedes. 
@@ -35,7 +35,10 @@ public class LiedTest extends TestCase {
 
 	/** component under test */
 	private Lied component;
-//	private static final Logger log= Logger.getLogger(LiedTest.class);
+	private static final Logger log= Logger.getLogger(LiedTest.class);
+	private static final Logger logfile= Logger.getLogger("F1");
+	
+	
 	/**
 	 * @see junit.framework.TestCase#setUp()
 	 */
@@ -58,7 +61,7 @@ public class LiedTest extends TestCase {
 	 */
 	public void testGetTitel() {
 		assertNotNull(component.getTitel());
-	//	log.info("Titel wurde erfolgreich gelesen");
+		log.info("Titel wurde erfolgreich gelesen");
 	}
 
 	/**
@@ -96,7 +99,11 @@ public class LiedTest extends TestCase {
 		System.out.println(df.format(jetzt));
 		
 		assertEquals("Dies ist der Fehlertext","hallo",component.getHinzugefuegtAm());
-	
+		logfile.debug("Hinzugefügt Test wurde durchgeführt");
+		
+		
+		
+		
 	}
 
 	/**

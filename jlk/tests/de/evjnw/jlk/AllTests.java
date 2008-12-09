@@ -14,13 +14,13 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: AllTests.java,v 1.1 2008/12/02 17:21:39 sgrossnw Exp $
+   $Id: AllTests.java,v 1.2 2008/12/09 09:26:11 ma08 Exp $
  */
 package de.evjnw.jlk;
 
-import de.evjnw.jlk.data.LiedTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
+import de.evjnw.jlk.data.LiedTest;
 
 /**
  * Diese Test-Suite ruft alle UnitTests auf.  

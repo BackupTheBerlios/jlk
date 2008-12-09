@@ -14,10 +14,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Lied.java,v 1.3 2008/12/02 17:13:07 sgrossnw Exp $
+   $Id: Lied.java,v 1.4 2008/12/09 09:26:11 ma08 Exp $
  */
 package de.evjnw.jlk.data;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Diese Datenklasse kümmert sich um die Lieder. Diese wurde analog zu meiner AccessDatenbank aufgebaut
  * und enthält Listen für Anhänge, Verknüpfungen und Quellen (Materialien). Sie ist somit das Kernstück

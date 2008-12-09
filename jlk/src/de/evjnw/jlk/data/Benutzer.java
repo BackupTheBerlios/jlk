@@ -14,10 +14,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Benutzer.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
+   $Id: Benutzer.java,v 1.3 2008/12/09 09:26:11 ma08 Exp $
  */
 package de.evjnw.jlk.data;
-import java.util.*;
+import java.util.List;
 /**
  * Diese Datenklasse beschreibt den Benutzer.
  * Der Benutzer kann hier auch seine Favoriten und Suchen speichern. 
