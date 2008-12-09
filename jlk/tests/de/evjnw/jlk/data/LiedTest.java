@@ -14,13 +14,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: LiedTest.java,v 1.1 2008/12/02 17:13:07 sgrossnw Exp $
+   $Id: LiedTest.java,v 1.2 2008/12/09 07:54:20 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+//import org.apache.log4j.Logger;
 
 import junit.framework.TestCase;
 
@@ -33,7 +35,7 @@ public class LiedTest extends TestCase {
 
 	/** component under test */
 	private Lied component;
-	
+//	private static final Logger log= Logger.getLogger(LiedTest.class);
 	/**
 	 * @see junit.framework.TestCase#setUp()
 	 */
@@ -48,6 +50,7 @@ public class LiedTest extends TestCase {
 		component.getMaterial().add(m1);
 		// Aufgabe des Frameworks?
 		component.setHinzugefuegtDurch(wer);
+		component.setHinzugefuegtAm(new Date());
 	}
 
 	/**
@@ -55,6 +58,7 @@ public class LiedTest extends TestCase {
 	 */
 	public void testGetTitel() {
 		assertNotNull(component.getTitel());
+	//	log.info("Titel wurde erfolgreich gelesen");
 	}
 
 	/**
@@ -90,15 +94,17 @@ public class LiedTest extends TestCase {
 		System.out.println(jetzt);
 		DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		System.out.println(df.format(jetzt));
-		System.out.println(DateFormat.getDateInstance(DateFormat.MEDIUM).format(jetzt));
-		fail("TODO: int ist wohl nicht der richtige Rueckgabewert");
+		
+		assertEquals("Dies ist der Fehlertext","hallo",component.getHinzugefuegtAm());
+	
 	}
 
 	/**
 	 * Test method for {@link de.evjnw.jlk.data.DataModell#setHinzugefuegtAm(int)}.
 	 */
 	public void testSetHinzugefuegtAm() {
-		fail("int ist wohl nicht der richtige Parameter");
+		component.setHinzugefuegtAm(new Date());
+		assertNotNull("Es ist ein Fehler aufgetreten",component.getHinzugefuegtAm());
 	}
 
 }
