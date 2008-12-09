@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Anhang.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
+   $Id: Anhang.java,v 1.3 2008/12/09 10:26:49 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 /**
@@ -27,7 +27,6 @@ public class Anhang extends DataModell{
 	 * Der Titel des Anhangs. 
 	*/
 	private String titel;
-	
 	/**
 	 * Eine Kurzbeschreibung. Diese kann vom Benutzer auch zum kommentieren genutzt werden. 
 	*/

@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: LiedTest.java,v 1.3 2008/12/09 09:26:11 ma08 Exp $
+   $Id: LiedTest.java,v 1.4 2008/12/09 10:26:49 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 
@@ -37,7 +37,7 @@ public class LiedTest extends TestCase {
 	private Lied component;
 	private static final Logger log= Logger.getLogger(LiedTest.class);
 	private static final Logger logfile= Logger.getLogger("F1");
-	
+
 	
 	/**
 	 * @see junit.framework.TestCase#setUp()
@@ -94,13 +94,16 @@ public class LiedTest extends TestCase {
 	 */
 	public void testGetHinzugefuegtAm() {
 		Date jetzt = new Date();
-		System.out.println(jetzt);
 		DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+		//Schlecht
 		System.out.println(df.format(jetzt));
+		//gut
+		log.info(df.format(jetzt));
 		
-		assertEquals("Dies ist der Fehlertext","hallo",component.getHinzugefuegtAm());
+		assertEquals("Dies ist der Fehlertext",jetzt,component.getHinzugefuegtAm());
+		//Hier bricht er, daher keine Logs
 		logfile.debug("Hinzugefügt Test wurde durchgeführt");
-		
+		log.error("Und ein Fehler");
 		
 		
 		
