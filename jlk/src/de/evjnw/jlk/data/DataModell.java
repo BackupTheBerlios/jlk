@@ -14,10 +14,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: DataModell.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
+   $Id: DataModell.java,v 1.3 2008/12/09 07:42:16 ma08 Exp $
  */
 package de.evjnw.jlk.data;
-import java.text.*;
+import java.util.Date;
 /**
  * Die SuperKlasse, die Attribute zur Verfügung stellt, die alle brauchen.
  * @author Mario Aldag
@@ -33,7 +33,7 @@ private int id;
 private int version;
 /**
 */
-private int hinzugefuegtAm;
+private Date hinzugefuegtAm;
 /**
 */
 private String hinzugefuegtDurch;
@@ -43,14 +43,15 @@ private String hinzugefuegtDurch;
  * @param durch - Person des hinzufügens
  */
 public DataModell(String durch){
-	//this.id=
-	//this.version=
-	this.setHinzugefuegtAm(DateFormat.SHORT);
+
+	Date jetzt = new Date();
+	
+	this.setHinzugefuegtAm(jetzt);
 	this.setHinzugefuegtDurch(durch);
 	
 }
 public DataModell(){
-	this.setHinzugefuegtAm(DateFormat.SHORT);
+	
 }
 /**
  * @return the id
@@ -83,14 +84,14 @@ public void setVersion(int version) {
 /**
  * @return the hinzugefuegt_am
  */
-public int getHinzugefuegtAm() {
+public Date getHinzugefuegtAm() {
 	return hinzugefuegtAm;
 }
 
 /**
  * @param hinzugefuegt_am the hinzugefuegt_am to set
  */
-public void setHinzugefuegtAm(int hinzugefuegt_am) {
+public void setHinzugefuegtAm(Date hinzugefuegt_am) {
 	hinzugefuegtAm = hinzugefuegt_am;
 }
 
