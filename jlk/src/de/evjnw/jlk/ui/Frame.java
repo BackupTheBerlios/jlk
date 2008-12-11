@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Frame.java,v 1.1 2008/12/01 18:50:00 sgrossnw Exp $
+   $Id: Frame.java,v 1.2 2008/12/11 09:43:16 sgrossnw Exp $
  */
 package de.evjnw.jlk.ui;
 
@@ -56,19 +56,22 @@ public class Frame implements Visualizer {
 	}
 
 	/**
-	 * 
+	 * Startet die GUI und die Verarbeitung von Eingaben.
 	 */
 	public void presentUI() {
+		appFrame.pack();
 		appFrame.setVisible(true);
 		
 	}
 
 	/**
-	 * 
+	 * Baut die Struktur der GUI auf.
 	 */
 	public void buildUI() {
 		appFrame = new JFrame("JLK");
-		
+		// TODO: selben Handler wie bei Datei > Beenden, ggf. abfragen
+		appFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		appFrame.setJMenuBar(new FrameMenu());
 	}
 	
 }
