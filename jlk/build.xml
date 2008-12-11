@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-     $Id: build.xml,v 1.4 2008/12/11 13:21:28 sgrossnw Exp $
+     $Id: build.xml,v 1.5 2008/12/11 13:47:53 sgrossnw Exp $
 
      JLK
      Java Lieder Katalog
@@ -136,12 +136,15 @@
 			<formatter type="xml"  />
 			<test name="de.evjnw.jlk.AllTests" todir="${testout.dir}" />
 		</junit>
+		<!-- hierfuer muss Xalan im ANT verfuegbar sein, 
+		das habe ich aber noch nicht im Hudson hingekriegt 
 		<junitreport todir="${testreport.dir}" >
 			<fileset dir="${testout.dir}">
 				<include name="TEST*.xml" />
 			</fileset>
 			<report todir="${testreport.dir}" />
 		</junitreport>
+		-->
 	</target>
 	
 </project>
