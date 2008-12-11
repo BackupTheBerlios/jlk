@@ -14,9 +14,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Visualizer.java,v 1.1 2008/12/01 18:50:00 sgrossnw Exp $
+   $Id: Visualizer.java,v 1.2 2008/12/11 14:49:45 sgrossnw Exp $
  */
 package de.evjnw.jlk.work;
+
+import java.util.Set;
 
 /**
  * Dieses Interface bietet die Darstellung von Daten und Meldungen. 
@@ -25,4 +27,34 @@ package de.evjnw.jlk.work;
  */
 public interface Visualizer {
 
+	/** 
+	 * present a message to the user and wait for confirmation.  
+	 * @param title
+	 * @param message
+	 */
+	public void presentInformation(String title, String message, InfoType type);  
+	
+	/**
+	 * Diese Enum bildet die verschiedenen Formen einer 
+	 * Information ab. 
+	 */
+	public enum InfoType {
+		INFORMATION, WARNING, ERROR;
+	}
+	
+	/** 
+	 * Present a message to the user and wait for his reaction.  
+	 * @param title
+	 * @param message
+	 * @param choices the set of possible choices 
+	 */
+	public UserChoice askUser(String title, String message, Set<UserChoice> choices);  
+
+	/** 
+	 * Diese Enum stellt die verschiedenen M&ouml;glichkeiten einer 
+	 * Benutzer-R&uuml;ckmeldung dar.   
+	 */
+	public enum UserChoice {
+		OK, CANCEL, YES, NO;
+	}
 }
