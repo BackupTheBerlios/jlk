@@ -1,3 +1,5 @@
 build
+dist
+Debug.log
 codetemplates.xml
 jlk.jar

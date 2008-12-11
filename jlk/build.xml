@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-     $Id: build.xml,v 1.1 2008/11/20 11:21:28 sgrossnw Exp $
+     $Id: build.xml,v 1.2 2008/12/11 11:18:55 sgrossnw Exp $
 
      JLK
      Java Lieder Katalog
@@ -26,13 +26,18 @@
             JLK Anwendung
     </description>
 
-	<property name="build.dir" location="build"/>
+	<property name="build.dir" description="individual components are built in this directory"  
+		location="build"/>
 	<property name="build.classes.dir" location="${build.dir}/classes"/>
-	<property name="build.test.dir" location="${build.dir}/tests"/>
+	<property name="build.test.dir"
+		description="the test cases/classes are compiled into this directory"
+		location="${build.dir}/tests"/>
 	<property name="archive.name" value="jlk.jar"/>
 	<property name="src.dir" location="src"/>
 	<property name="src.test.dir" location="tests"/>
 	<property name="lib.dir" location="libs"/>
+	<property name="dist.dir" description="the distribution is built in this directory" 
+		location="dist"/>
 	
 	<path id="build.path" description="needed libs for compiling the application">
 		<fileset dir="${lib.dir}">
@@ -63,10 +68,15 @@
 		<delete dir="${build.dir}" />
 	</target>
 	
-    <target name="init" description="initializes build structure" >
+	<target name="realclean" depends="clean" >
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<target name="init" description="initialize build structure" >
         <mkdir dir="${build.dir}"/>
     	<mkdir dir="${build.classes.dir}"/>
     	<mkdir dir="${build.test.dir}" />
+    	<mkdir dir="${dist.dir}" />
     </target>
 
     <target name="checkout" description="at the moment empty" depends="init" >
@@ -90,13 +100,19 @@
 	</target>
 
     <target name="build" description="build a JAR" depends="compile">
-    	<jar file="${archive.name}" basedir="${build.classes.dir}">
+    	<jar file="${dist.dir}/${archive.name}" basedir="${build.classes.dir}">
     		<manifest>
     			<attribute name="application" value="EvJ NW JLK" />
     			<attribute name="version" value="0.1"/>
     			<attribute name="license" value="Apache License, Version 2.0"/>
     		</manifest>
     	</jar>
+    	<copy todir="${dist.dir}">
+    		<fileset dir=".">
+    			<include name="LICENSE"/>
+    			<include name="NOTICE"/>
+    		</fileset>
+    	</copy>
     </target>
 
 </project>
