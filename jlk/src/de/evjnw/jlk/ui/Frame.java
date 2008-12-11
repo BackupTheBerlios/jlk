@@ -14,11 +14,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Frame.java,v 1.2 2008/12/11 09:43:16 sgrossnw Exp $
+   $Id: Frame.java,v 1.3 2008/12/11 14:25:12 sgrossnw Exp $
  */
 package de.evjnw.jlk.ui;
 
+import java.awt.Container;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.Box;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import de.evjnw.jlk.work.Performer;
 import de.evjnw.jlk.work.Visualizer;
@@ -31,6 +38,11 @@ import de.evjnw.jlk.work.Visualizer;
  */
 public class Frame implements Visualizer {
 
+	/**
+	 * 
+	 */
+	private static final String FRAME_TITLE = "JLK";
+
 	/** 
 	 * die Ausf&uuml;hrung der Logik wird an diese Klasse delegiert.
 	 */
@@ -40,6 +52,16 @@ public class Frame implements Visualizer {
 	 * die Hauptstruktur der Oberfl&auml;che
 	 */
 	private JFrame appFrame; 
+	
+	/** 
+	 * in diesem Panel sind die Benutzer-Aktionen m&ouml;glich
+	 */
+	private final JPanel actionPane = new JPanel();
+	
+	/**
+	 * in diesem Panel werden die Daten ausgegeben 
+	 */
+	private final JPanel detailPane = new JPanel();
 	
 	/**
 	 * @param performer the performer to set
@@ -61,17 +83,66 @@ public class Frame implements Visualizer {
 	public void presentUI() {
 		appFrame.pack();
 		appFrame.setVisible(true);
-		
 	}
 
 	/**
 	 * Baut die Struktur der GUI auf.
 	 */
 	public void buildUI() {
-		appFrame = new JFrame("JLK");
+		appFrame = new JFrame(FRAME_TITLE);
+		
+		final Container contentPane = appFrame.getContentPane();
+		
+		contentPane.setLayout(new GridBagLayout());
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		// Insets sorgen fuer eine Einrueckung des Panels
+		gbc.insets = new Insets(8, 8, 8, 8); // tlbr
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.anchor = GridBagConstraints.WEST;
+		contentPane.add(actionPane, gbc);
+		
+		gbc.gridx = 1;
+		gbc.gridy = 0; 
+		contentPane.add(detailPane, gbc);
+		
+		// diese kuenstlichen Komponenten definieren eine Mindestbreite 
+		// und Mindesthoehe der anfangs leeren ActionPane und DetailPane
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.insets = new Insets(0, 8, 0, 8);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		contentPane.add(Box.createHorizontalStrut(200), gbc);
+
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		contentPane.add(Box.createHorizontalStrut(300), gbc);
+
+		gbc.gridx = 2;
+		gbc.gridy = 0;
+		gbc.insets = new Insets(8, 0, 8, 0);
+		gbc.fill = GridBagConstraints.VERTICAL;
+		contentPane.add(Box.createVerticalStrut(300), gbc);
+
 		// TODO: selben Handler wie bei Datei > Beenden, ggf. abfragen
 		appFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		appFrame.setJMenuBar(new FrameMenu());
+	}
+
+	/**
+	 * @return the actionPane
+	 */
+	public JPanel getActionPane() {
+		return actionPane;
+	}
+
+	/**
+	 * @return the detailPane
+	 */
+	public JPanel getDetailPane() {
+		return detailPane;
 	}
 	
 }
