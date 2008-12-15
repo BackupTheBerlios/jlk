@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: DataModell.java,v 1.3 2008/12/09 07:42:16 ma08 Exp $
+   $Id: DataModell.java,v 1.4 2008/12/15 22:15:51 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 import java.util.Date;
@@ -37,7 +37,7 @@ private Date hinzugefuegtAm;
 /**
 */
 private String hinzugefuegtDurch;
-
+private Date geaendertAm;
 /**
  * Konstruktor
  * @param durch - Person des hinzufügens
@@ -107,6 +107,18 @@ public String getHinzugefuegtDurch() {
  */
 public void setHinzugefuegtDurch(String hinzugefuegt_durch) {
 	hinzugefuegtDurch = hinzugefuegt_durch;
+}
+/**
+ * @return the geaendertAm
+ */
+public Date getGeaendertAm() {
+	return geaendertAm;
+}
+/**
+ * @param geaendertAm the geaendertAm to set
+ */
+public void setGeaendertAm(Date geaendertAm) {
+	this.geaendertAm = geaendertAm;
 }
 
 }

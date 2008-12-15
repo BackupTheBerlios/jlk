@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Benutzer.java,v 1.3 2008/12/09 09:26:11 ma08 Exp $
+   $Id: Benutzer.java,v 1.4 2008/12/15 22:15:51 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 import java.util.List;
@@ -23,7 +23,7 @@ import java.util.List;
  * Der Benutzer kann hier auch seine Favoriten und Suchen speichern. 
  * @author Mario Aldag
 */
-public class Benutzer{
+public class Benutzer extends DataModell{
 
 private String vorname;
 private String nachname;
