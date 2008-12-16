@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="de.evjnw.jlk.data">
+  <class name="Suche">
+    <id name="id">
+      <generator class="native"/>
+    </id>
+    <version name="version" />
+	<property name="Suchtext" />
+	<property name="Reihenfolge" />
+	<property name="ErgebnisseproSeite" />
+	<property name="Datum"  type="DATE"/>
+	<property name="Titel" />
+	<many-to-one name="Benutzer" column="Owner" />
+ </class>
+</hibernate-mapping>

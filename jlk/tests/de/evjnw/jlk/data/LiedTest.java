@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: LiedTest.java,v 1.4 2008/12/09 10:26:49 ma08 Exp $
+   $Id: LiedTest.java,v 1.5 2008/12/16 15:57:39 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 
@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import junit.framework.TestCase;
-
+//import org.hibernate.cfg.*;
 import org.apache.log4j.Logger;
 
 /**
@@ -54,7 +54,11 @@ public class LiedTest extends TestCase {
 		// Aufgabe des Frameworks?
 		component.setHinzugefuegtDurch(wer);
 		component.setHinzugefuegtAm(new Date());
+		//TODO: Testcases für Hibernate
+		//Configuration config=new Configuration();
+		
 	}
+	
 
 	/**
 	 * Test method for {@link de.evjnw.jlk.data.Lied#getTitel()}.

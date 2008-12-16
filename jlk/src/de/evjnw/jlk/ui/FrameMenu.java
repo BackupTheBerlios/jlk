@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: FrameMenu.java,v 1.1 2008/12/11 09:39:40 sgrossnw Exp $
+   $Id: FrameMenu.java,v 1.2 2008/12/16 15:57:39 ma08 Exp $
  */
 package de.evjnw.jlk.ui;
 
@@ -31,6 +31,7 @@ import org.apache.log4j.Logger;
  * Diese Klasse bildet die Men&uuml;struktur der Anwendung. 
  * @author Stephan
  */
+@SuppressWarnings("serial")
 public class FrameMenu extends JMenuBar {
 
 	private static final String SEP = "<<>>";
