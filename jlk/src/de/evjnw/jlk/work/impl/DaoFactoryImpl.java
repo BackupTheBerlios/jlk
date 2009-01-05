@@ -14,9 +14,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: DaoFactoryImpl.java,v 1.1 2009/01/04 13:12:29 sgrossnw Exp $
+   $Id: DaoFactoryImpl.java,v 1.2 2009/01/05 11:41:42 sgrossnw Exp $
  */
 package de.evjnw.jlk.work.impl;
+
+import java.io.File;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -46,8 +48,10 @@ public class DaoFactoryImpl implements DaoFactory {
 	 * @param password  Passwort des technischen Benutzers an der Datenbank
 	 */
 	public DaoFactoryImpl(String user, String password) {
+		// TODO: sollte eigentlich eine Ressource im Classpath sein
+		File f = new File("hibernate.cfg.xml");
 		Configuration configuration =
-            new Configuration().configure();
+            new Configuration().configure(f);
 		// TODO: Benutzer und Passwort in der Configuration ersetzen
 		
 		//		configuration.setInterceptor(new LastModifiedInterceptor());
