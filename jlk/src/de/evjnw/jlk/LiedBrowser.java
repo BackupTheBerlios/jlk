@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: LiedBrowser.java,v 1.4 2008/12/02 17:21:39 sgrossnw Exp $
+   $Id: LiedBrowser.java,v 1.5 2009/01/05 11:43:13 sgrossnw Exp $
  */
 package de.evjnw.jlk;
 
@@ -22,6 +22,8 @@ import org.apache.log4j.Logger;
 
 import de.evjnw.jlk.ui.Frame;
 import de.evjnw.jlk.work.Controller;
+import de.evjnw.jlk.work.dao.DaoFactory;
+import de.evjnw.jlk.work.impl.DaoFactoryImpl;
 
 
 /**
@@ -63,6 +65,9 @@ public class LiedBrowser {
 		controller = new Controller();
 		frame.setPerformer(controller);
 		controller.setVisualizer(frame);
+		
+		DaoFactory df = new DaoFactoryImpl("foo", "bar");
+		controller.setDaoFactory(df);
 	}
 
 }
