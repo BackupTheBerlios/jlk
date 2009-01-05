@@ -14,11 +14,13 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Controller.java,v 1.1 2008/12/01 18:50:00 sgrossnw Exp $
+   $Id: Controller.java,v 1.2 2009/01/05 11:42:43 sgrossnw Exp $
  */
 package de.evjnw.jlk.work;
 
 import org.apache.log4j.Logger;
+
+import de.evjnw.jlk.work.dao.DaoFactory;
 
 /**
  * Diese Klasse ist die Steuerzentrale der Anwendung. 
@@ -30,10 +32,15 @@ public class Controller implements Performer {
 	
 	/** 
 	 * dient zum Anzeigen des Zustands;
-	 * wird &uuml;ber ge&auml;nderte Daten informiert
+	 * wird &uuml;ber ge&auml;nderte Daten informiert.
 	 */
 	private Visualizer visualizer;
 
+	/**
+	 * die DAO Factory bietet den Zugriff auf die Datenhaltung
+	 */
+	private DaoFactory daoFactory;
+	
 	/**
 	 * @return the visualizer
 	 */
@@ -57,6 +64,20 @@ public class Controller implements Performer {
 		}
 		// TODO tu was
 		log.info("verb:"+command.getVerb());
+	}
+
+	/**
+	 * @param daoFactory the daoFactory to set
+	 */
+	public void setDaoFactory(DaoFactory daoFactory) {
+		this.daoFactory = daoFactory;
+	}
+
+	/**
+	 * @return the daoFactory
+	 */
+	public DaoFactory getDaoFactory() {
+		return daoFactory;
 	}
 	
 	
