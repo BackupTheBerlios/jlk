@@ -9,9 +9,9 @@
       <generator class="native"/>
     </id>
     <version name="version" />
-	<property name="hinzugefuegtAm" type="DATE"/>
+	<property name="hinzugefuegtAm" type="date"/>
 	<property name="hinzugefuegtDurch" />
-	<property name="geandertAm" type="DATE"/>
+	<property name="geaendertAm" type="date"/>
 	
 	<union-subclass name="de.evjnw.jlk.data.Benutzer" table="Benutzer">
 		<property name="Vorname"/>
@@ -31,7 +31,10 @@
 	<union-subclass name="de.evjnw.jlk.data.Favoriten" table="Favoriten">
 		<property name="Bewertung"></property>
 		<property name="Kommentar"></property>
-		<many-to-one name="Lied" class="de.evjnw.jlk.data.Lied" />
+<!--
+  TODO: Lied ist noch nicht gemappt
+ 		<many-to-one name="Lied" class="de.evjnw.jlk.data.Lied" />
+ -->
 	</union-subclass>
 
 
