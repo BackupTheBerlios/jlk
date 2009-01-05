@@ -16,9 +16,10 @@
     
     <property name="connection.url">jdbc:h2:file:db/JLKDB</property>
    
-    <mapping resource="de/evjnw/jlk/data/DataModell.hbm.xlm" />
-	<mapping resource="de/evjnw/jlk/data/Suche.hbm.xlm" />
+    <mapping resource="de/evjnw/jlk/data/DataModell.hbm.xml" />
+	<mapping resource="de/evjnw/jlk/data/Suche.hbm.xml" />
 	
+	<!--  TODO: diese Listener haben wir noch nicht in der Codebase
     <event type="pre-delete">
       <listener class="de.evjnw.example.work.listener.LastModifiedListener" />
     </event>
@@ -28,6 +29,7 @@
     <event type="pre-update">
       <listener class="de.evjnw.example.work.listener.LastModifiedListener" />
     </event>
+     -->
  	 
   </session-factory>
     
