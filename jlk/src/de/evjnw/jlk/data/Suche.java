@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Suche.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
+   $Id: Suche.java,v 1.3 2009/01/05 11:39:05 sgrossnw Exp $
  */
 package de.evjnw.jlk.data;
 import java.text.DateFormat;
@@ -23,6 +23,11 @@ import java.text.DateFormat;
  * @author Mario Aldag
 */
 public class Suche{
+	/**
+	 * Id für die Datenbank.
+	 */
+	private int id;
+
 /**
  * Der Suchstring, nach dem gesucht werden soll.
 */
@@ -140,6 +145,19 @@ public int getDatum() {
 	return datum;
 }
 
+/**
+ * @param id the id to set
+ */
+public void setId(int id) {
+	this.id = id;
+}
+
+/**
+ * @return the id
+ */
+public int getId() {
+	return id;
+}
 
 }
 
