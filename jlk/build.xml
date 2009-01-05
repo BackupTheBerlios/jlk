@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-     $Id: build.xml,v 1.5 2008/12/11 13:47:53 sgrossnw Exp $
+     $Id: build.xml,v 1.6 2009/01/05 11:37:03 sgrossnw Exp $
 
      JLK
      Java Lieder Katalog
@@ -44,10 +44,16 @@
 	<path id="build.path" description="needed libs for compiling the application">
 		<fileset dir="${lib.dir}">
 			<!-- logging -->
-			<include name="log4j-1.2.8.jar"/>
+			<include name="log4j-1.2.15.jar"/>
 			
-			<!-- von JFreeChart -->
+			<!-- von JFreeChart 
 			<include name="jcommon-1.0.12.jar"/>
+			-->
+			
+			<!-- von Hibernate 3.1 -->
+			<include name="hibernate3.jar"/>
+			<include name="commons-collections-3.1.jar"/>
+			<include name="jta-1.1.jar" />
 		</fileset>
 	</path>
 
@@ -63,6 +69,13 @@
 		<path location="${build.classes.dir}" />
 		<fileset dir="${lib.dir}">
 			<include name="junit.jar"/>
+			
+			<!-- Hibernate 3.1 runtime dependencies-->
+			<include name="dom4j-1.6.1.jar" />
+			<include name="antlr-2.7.6.jar" />
+			<include name="javassist-3.4.GA.jar" />
+			<include name="slf4j-api-1.5.2.jar" />
+			<include name="slf4j-log4j12-1.5.2.jar" />
 		</fileset>
 	</path>
 	
@@ -97,7 +110,14 @@
         	<compilerarg value="ISO-8859-1" />
 		</javac>
 
-        <javac 
+		<copy todir="${build.classes.dir}">
+			<fileset dir="${src.dir}">
+				<include name="log4j.properties" />
+				<include name="**/*.hbm.xml" />
+			</fileset>
+		</copy>
+
+		<javac 
          destdir="${build.test.dir}"
          debug="on" 
          srcdir="${src.test.dir}">
@@ -105,6 +125,7 @@
         	<compilerarg value="-encoding" />
         	<compilerarg value="ISO-8859-1" />
 		</javac>
+		
 	</target>
 
     <target name="build" description="build a JAR" depends="compile">
