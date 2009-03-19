@@ -14,16 +14,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: BenutzerDaoImpl.java,v 1.1 2009/01/03 18:30:23 sgrossnw Exp $
+   $Id: BenutzerDaoImpl.java,v 1.2 2009/03/19 22:09:02 sgrossnw Exp $
  */
 package de.evjnw.jlk.work.impl;
 
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import de.evjnw.jlk.data.Benutzer;
 import de.evjnw.jlk.work.dao.BenutzerDao;
@@ -44,13 +46,25 @@ public class BenutzerDaoImpl implements BenutzerDao {
 	 * @see de.evjnw.jlk.work.dao.BenutzerDao#lade(int)
 	 */
 	public Benutzer lade(int id) throws DaoException {
-		// TODO Auto-generated method stub
-		return null;
+		Object o;
+		try {
+			Session session = factory.getCurrentSession();
+			Criteria criteria = session.createCriteria(Benutzer.class);
+			criteria.add(Restrictions.idEq(id));
+			o = criteria.uniqueResult();
+		} catch (HibernateException e) {
+			throw new DaoException("Fehler beim Laden des Benutzers mit id="+id+" : "+e.getMessage(), e);
+		}
+		if (o == null) {
+			throw new DaoException("Kein Benutzer vorhanden mit id="+id);
+		}
+		return (Benutzer) o;
 	}
 
 	/**
 	 * @see de.evjnw.jlk.work.dao.BenutzerDao#liste()
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Benutzer> liste() {
 		Session session = factory.getCurrentSession();
 		Criteria criteria = session.createCriteria(Benutzer.class);
