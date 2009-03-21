@@ -14,10 +14,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Suche.java,v 1.3 2009/01/05 11:39:05 sgrossnw Exp $
+   $Id: Suche.java,v 1.4 2009/03/21 15:28:06 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 import java.text.DateFormat;
+import java.util.Date;
 /**
  * Diese Klasse wird mit den Suchdaten gefüttert um dann die Suche auszuführen.
  * @author Mario Aldag
@@ -43,7 +44,7 @@ private int ergebnisseProSeite;
 /**
  * Das aktuelle Datum der Suche
 */
-private int datum;
+private Date datum;
 /**
  * Wenn die Suche gespeichert werden soll, kann der Benutzer der Suche einen Namen geben
 */
@@ -51,7 +52,7 @@ private String titel;
 /**
  * Der Benutzer, der die Suche ausführt. 
 */
-private String benutzer;
+private Benutzer benutzer;
 
 /**
  * Der Standardkonstruktor. Er fügt defaultmäßig 10 Ergebnisse pro Seite, bei "ASC" Sortierung ein.
@@ -60,12 +61,12 @@ private String benutzer;
  */
 public Suche(String Suchtext){
 	this.setSuchtext(Suchtext);
-	this.datum=DateFormat.SHORT;
+	//this.datum=DateFormat.SHORT;
 	
 	//Defaultwerte für den Rest setzen, damit Suche ausgeführt werden kann
 	this.setReihenfolge("ASC");
 	this.setErgebnisseProSeite(10);
-	this.setBenutzer("ANONYMUS");
+	//this.setBenutzer("ANONYMUS");
 }
 
 /**
@@ -127,21 +128,21 @@ public void setTitel(String titel) {
 /**
  * @return the benutzer
  */
-public String getBenutzer() {
+public Benutzer getBenutzer() {
 	return benutzer;
 }
 
 /**
  * @param benutzer the benutzer to set
  */
-public void setBenutzer(String benutzer) {
+public void setBenutzer(Benutzer benutzer) {
 	this.benutzer = benutzer;
 }
 
 /**
  * @return the datum
  */
-public int getDatum() {
+public Date getDatum() {
 	return datum;
 }
 

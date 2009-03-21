@@ -14,10 +14,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: BenutzerDaoImplTest.java,v 1.1 2009/01/03 18:30:23 sgrossnw Exp $
+   $Id: BenutzerDaoImplTest.java,v 1.2 2009/03/21 15:28:06 ma08 Exp $
  */
 package de.evjnw.jlk.work.impl;
 
+import de.evjnw.jlk.data.Benutzer;
+import de.evjnw.jlk.work.dao.BenutzerDao;
 import junit.framework.TestCase;
 
 /**
@@ -26,11 +28,15 @@ import junit.framework.TestCase;
  */
 public class BenutzerDaoImplTest extends TestCase {
 
+	/** zu testende Komponente. */
+	BenutzerDao component; 
+	
 	/**
 	 * @see junit.framework.TestCase#setUp()
 	 */
 	protected void setUp() throws Exception {
-		super.setUp();
+		DaoFactoryImpl factory = new DaoFactoryImpl("sa", "");
+		component = factory.getBenutzerDao();
 	}
 
 	/**
@@ -51,7 +57,10 @@ public class BenutzerDaoImplTest extends TestCase {
 	 * Test method for {@link de.evjnw.jlk.work.impl.BenutzerDaoImpl#speicher(de.evjnw.jlk.data.Benutzer)}.
 	 */
 	public void testSpeicher() {
-		fail("Not yet implemented");
+		Benutzer b = new Benutzer("Hans", "Albers");
+		component.startTransaction();
+		component.speicher(b);
+		component.commitTransaction();
 	}
 
 	/**

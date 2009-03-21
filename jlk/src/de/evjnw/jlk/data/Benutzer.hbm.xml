@@ -18,25 +18,24 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $$Id: Suche.hbm.xml,v 1.3 2009/03/21 15:28:06 ma08 Exp $$
+   $$Id: Benutzer.hbm.xml,v 1.1 2009/03/21 15:28:06 ma08 Exp $$
     -->
 <hibernate-mapping package="de.evjnw.jlk.data">
-  <class name="Suche">
+  <class name="Benutzer">
+   <!-- Attribute der abstrakten Basisklasse -->
     <id name="id">
       <generator class="native"/>
     </id>
-    <!-- 
     <version name="version" />
-     -->
-	<property name="suchtext" />
-	<property name="reihenfolge" />
-	<property name="ergebnisseProSeite" />
-	<property name="datum"  type="date" />
-	<property name="titel" />
-	<property name="benutzer" />
-	
-	<!-- TODO: die Klasse verwendet String - soll das DataModell oder der Name enthalten sein?  
-	<many-to-one name="Benutzer" column="Owner" />
-	 -->
+    <property name="hinzugefuegtAm" type="date" />
+    <property name="hinzugefuegtDurch" />
+    <property name="geaendertAm" type="date"/>
+<!-- Ende Attribute der abstrakten Basisklasse -->
+ 	<property name="vorname" />
+ 	<property name="nachname" />
+ 	<property name="passwort" />
+ 	<property name="lastLogin" type="date"/>
+
  </class>
+ 	
 </hibernate-mapping>

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
@@ -18,23 +18,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $$Id: Suche.hbm.xml,v 1.3 2009/03/21 15:28:06 ma08 Exp $$
-    -->
+   $Id: NewFile.xml,v 1.1 2009/03/21 15:28:06 ma08 Exp $
+
+ -->
 <hibernate-mapping package="de.evjnw.jlk.data">
-  <class name="Suche">
+  <class name="Favoriten">
     <id name="id">
       <generator class="native"/>
     </id>
-    <!-- 
     <version name="version" />
-     -->
-	<property name="suchtext" />
-	<property name="reihenfolge" />
+    <property name="Suchtext" />
+	<property name="Reihenfolge" />
 	<property name="ergebnisseProSeite" />
-	<property name="datum"  type="date" />
-	<property name="titel" />
-	<property name="benutzer" />
-	
+	<property name="Datum"  type="date" />
+	<property name="Titel" />
 	<!-- TODO: die Klasse verwendet String - soll das DataModell oder der Name enthalten sein?  
 	<many-to-one name="Benutzer" column="Owner" />
 	 -->

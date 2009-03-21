@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Favoriten.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
+   $Id: Favoriten.java,v 1.3 2009/03/21 15:28:06 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 
@@ -37,10 +37,24 @@ private int bewertung;
 */
 private String kommentar;
 
+private Benutzer benutzer;
+
 public Favoriten(Lied Lied){
 	super();
 	this.setLied(Lied);
 	}
+/**
+ * @return the benutzer
+ */
+public Benutzer getBenutzer() {
+	return benutzer;
+}
+/**
+ * @param benutzer the benutzer to set
+ */
+public void setBenutzer(Benutzer benutzer) {
+	this.benutzer = benutzer;
+}
 /**
  * @return the lied
  */

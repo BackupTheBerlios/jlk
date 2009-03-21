@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: BenutzerDaoImpl.java,v 1.2 2009/03/19 22:09:02 sgrossnw Exp $
+   $Id: BenutzerDaoImpl.java,v 1.3 2009/03/21 15:28:06 ma08 Exp $
  */
 package de.evjnw.jlk.work.impl;
 
@@ -22,12 +22,14 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import de.evjnw.jlk.data.Benutzer;
+import de.evjnw.jlk.data.Favoriten;
 import de.evjnw.jlk.work.dao.BenutzerDao;
 import de.evjnw.jlk.work.dao.DaoException;
 
@@ -71,6 +73,18 @@ public class BenutzerDaoImpl implements BenutzerDao {
 		return criteria.list();
 	}
 
+	/**
+	 * @see de.evjnw.jlk.work.dao.BenutzerDao#liste()
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Favoriten> listeFavoriten(Benutzer benutzer) {
+		Session session = factory.getCurrentSession();
+		Query q = session.createQuery("FROM Favoriten f where f.benutzer = :b");
+		q.setEntity("b", benutzer);
+		return q.list();
+	}
+
+	
 	/**
 	 * @see de.evjnw.jlk.work.dao.BenutzerDao#speicher(de.evjnw.jlk.data.Benutzer)
 	 */

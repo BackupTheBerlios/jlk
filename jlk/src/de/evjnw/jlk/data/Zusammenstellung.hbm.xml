@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
@@ -18,25 +18,21 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $$Id: Suche.hbm.xml,v 1.3 2009/03/21 15:28:06 ma08 Exp $$
+   $Id: Zusammenstellung.hbm.xml,v 1.1 2009/03/21 15:28:06 ma08 Exp $
     -->
 <hibernate-mapping package="de.evjnw.jlk.data">
-  <class name="Suche">
+  <class name="Zusammenstellung">
+   <!-- Attribute der abstrakten Basisklasse -->
     <id name="id">
       <generator class="native"/>
     </id>
-    <!-- 
     <version name="version" />
-     -->
-	<property name="suchtext" />
-	<property name="reihenfolge" />
-	<property name="ergebnisseProSeite" />
-	<property name="datum"  type="date" />
+    <property name="hinzugefuegtAm" type="date" />
+    <property name="hinzugefuegtDurch" />
+    <property name="geaendertAm" type="date"/>
+<!-- Ende Attribute der abstrakten Basisklasse -->
 	<property name="titel" />
-	<property name="benutzer" />
-	
-	<!-- TODO: die Klasse verwendet String - soll das DataModell oder der Name enthalten sein?  
-	<many-to-one name="Benutzer" column="Owner" />
-	 -->
+	<property name="beschreibung" />
+	<!-- Todo: Mapping der Lieder und Anhänge -->
  </class>
 </hibernate-mapping>

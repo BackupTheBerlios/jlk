@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: DaoFactoryImpl.java,v 1.2 2009/01/05 11:41:42 sgrossnw Exp $
+   $Id: DaoFactoryImpl.java,v 1.3 2009/03/21 15:28:06 ma08 Exp $
  */
 package de.evjnw.jlk.work.impl;
 
@@ -22,6 +22,7 @@ import java.io.File;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 import de.evjnw.jlk.work.dao.BenutzerDao;
 import de.evjnw.jlk.work.dao.DaoFactory;
