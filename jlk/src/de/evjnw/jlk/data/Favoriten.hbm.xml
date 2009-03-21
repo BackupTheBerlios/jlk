@@ -18,7 +18,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $$Id: Favoriten.hbm.xml,v 1.1 2009/03/21 15:28:06 ma08 Exp $$
+   $$Id: Favoriten.hbm.xml,v 1.2 2009/03/21 19:08:45 sgrossnw Exp $$
     -->
 <hibernate-mapping package="de.evjnw.jlk.data">
   <class name="Favoriten">
@@ -31,7 +31,8 @@
     <property name="hinzugefuegtDurch" />
     <property name="geaendertAm" type="date"/>
 <!-- Ende Attribute der abstrakten Basisklasse -->
-    <property name="lied" type="Lied"/>
+    
+    <!--<property name="lied" type="Lied"/>-->
     <property name="bewertung" />
     <property name="kommentar" />
 	<many-to-one name="benutzer" column="benutzer" />
