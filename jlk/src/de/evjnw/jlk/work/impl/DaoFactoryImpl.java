@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: DaoFactoryImpl.java,v 1.4 2009/03/21 21:00:16 sgrossnw Exp $
+   $Id: DaoFactoryImpl.java,v 1.5 2009/03/22 14:13:03 ma08 Exp $
  */
 package de.evjnw.jlk.work.impl;
 
@@ -36,7 +36,7 @@ import de.evjnw.jlk.work.dao.DaoFactory;
  */
 public class DaoFactoryImpl implements DaoFactory {
 
-	private SessionFactory factory;
+	SessionFactory factory;
 
 	/** 
 	 * Mit diesem Flag könnnen wir steuern, ob während der Entwicklungsphase 
