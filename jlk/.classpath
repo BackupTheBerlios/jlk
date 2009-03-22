@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="tests"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="libs/junit.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="http://junit.org/junit/javadoc/4.5/"/>
@@ -18,5 +17,7 @@
 	<classpathentry kind="lib" path="libs/slf4j-api-1.5.2.jar"/>
 	<classpathentry kind="lib" path="libs/slf4j-log4j12-1.5.2.jar"/>
 	<classpathentry kind="lib" path="libs/log4j-1.2.15.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="libs/hsqldb.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
