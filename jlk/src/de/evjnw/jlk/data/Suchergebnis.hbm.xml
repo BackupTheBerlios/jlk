@@ -18,20 +18,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Suchergebnis.hbm.xml,v 1.1 2009/03/21 15:28:06 ma08 Exp $
+   $Id: Suchergebnis.hbm.xml,v 1.2 2009/03/22 14:14:02 ma08 Exp $
     -->
 <hibernate-mapping package="de.evjnw.jlk.data">
   <class name="Suchergebnis">
-   <!-- Attribute der abstrakten Basisklasse -->
+   
     <id name="id">
       <generator class="native"/>
     </id>
-    <version name="version" />
-    <property name="hinzugefuegtAm" type="date" />
-    <property name="hinzugefuegtDurch" />
-    <property name="geaendertAm" type="date"/>
-<!-- Ende Attribute der abstrakten Basisklasse -->
-	<property name="suche" type="Suche"/>
+   <!--
+    <property name="suche" type="Suche"/>
+    TODO:1:1 Beziehung
+   -->
 	<property name="ergebnis" />
 	<property name="dauer" />
  </class>

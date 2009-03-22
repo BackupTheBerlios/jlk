@@ -18,7 +18,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Verknuepfung.hbm.xml,v 1.1 2009/03/21 15:28:06 ma08 Exp $
+   $Id: Verknuepfung.hbm.xml,v 1.2 2009/03/22 14:14:02 ma08 Exp $
     -->
 <hibernate-mapping package="de.evjnw.jlk.data">
   <class name="Verknuepfung">
@@ -31,7 +31,10 @@
     <property name="hinzugefuegtDurch" />
     <property name="geaendertAm" type="date"/>
 <!-- Ende Attribute der abstrakten Basisklasse -->
-	<property name="Lied1" type="Lied" />
-	<property name="Lied2" type="Lied" />
+	
+    <many-to-one name="lied1" column="lied1" class="Lied" />
+	<!-- <property name="lied2" type="Lied" />
+	 -->
+	
  </class>
 </hibernate-mapping>

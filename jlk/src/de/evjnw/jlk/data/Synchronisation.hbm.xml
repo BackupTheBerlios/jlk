@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" ?>
 <!DOCTYPE hibernate-mapping PUBLIC
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
@@ -18,19 +18,13 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Synchronisation.hbm.xml,v 1.1 2009/03/21 15:28:06 ma08 Exp $
+   $Id: Synchronisation.hbm.xml,v 1.2 2009/03/22 14:14:02 ma08 Exp $
     -->
 <hibernate-mapping package="de.evjnw.jlk.data">
   <class name="Synchronisation">
-   <!-- Attribute der abstrakten Basisklasse -->
     <id name="id">
       <generator class="native"/>
     </id>
-    <version name="version" />
-    <property name="hinzugefuegtAm" type="date" />
-    <property name="hinzugefuegtDurch" />
-    <property name="geaendertAm" type="date"/>
-<!-- Ende Attribute der abstrakten Basisklasse -->
 	<property name="letzterSync" />
 	<property name="quelle" />
  </class>

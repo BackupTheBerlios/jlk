@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Suchergebnis.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
+   $Id: Suchergebnis.java,v 1.3 2009/03/22 14:14:02 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 /**
@@ -24,7 +24,9 @@ package de.evjnw.jlk.data;
  * @author Mario Aldag
  */
 public class Suchergebnis{
-/**
+
+	private int id;
+	/**
  * Die alte Suche wird hier gespeichert.
 */
 private Suche suche;
@@ -47,6 +49,20 @@ public Suchergebnis(Suche Suche, String[][] Ergebnis){
 	this.suche=Suche;
 	this.ergebnis=Ergebnis;
 	this.setDauer(0);
+}
+
+/**
+ * @return the id
+ */
+public int getId() {
+	return id;
+}
+
+/**
+ * @param id the id to set
+ */
+public void setId(int id) {
+	this.id = id;
 }
 
 /**

@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Verknuepfung.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
+   $Id: Verknuepfung.java,v 1.3 2009/03/22 14:14:02 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 /**
@@ -27,6 +27,34 @@ public class Verknuepfung extends DataModell{
  * Lied 1
 */
 private Lied lied1;
+/**
+ * @return the lied1
+ */
+public Lied getLied1() {
+	return lied1;
+}
+
+/**
+ * @param lied1 the lied1 to set
+ */
+public void setLied1(Lied lied1) {
+	this.lied1 = lied1;
+}
+
+/**
+ * @return the lied2
+ */
+public Lied getLied2() {
+	return lied2;
+}
+
+/**
+ * @param lied2 the lied2 to set
+ */
+public void setLied2(Lied lied2) {
+	this.lied2 = lied2;
+}
+
 /**
  * Lied 2
 */

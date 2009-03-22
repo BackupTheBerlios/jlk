@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Synchronisation.java,v 1.2 2008/11/29 23:58:17 sgrossnw Exp $
+   $Id: Synchronisation.java,v 1.3 2009/03/22 14:14:02 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 /**
@@ -23,7 +23,9 @@ package de.evjnw.jlk.data;
  * @author Mario Aldag
 */
 public class Synchronisation{
-/**
+
+	private int id;
+	/**
 */
 private int letzterSync;
 /**
@@ -32,6 +34,20 @@ private String quelle;
 
 public Synchronisation(){
 	
+}
+
+/**
+ * @return the id
+ */
+public int getId() {
+	return id;
+}
+
+/**
+ * @param id the id to set
+ */
+public void setId(int id) {
+	this.id = id;
 }
 
 /**

@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Suche.java,v 1.5 2009/03/22 11:49:59 ma08 Exp $
+   $Id: Suche.java,v 1.6 2009/03/22 14:14:02 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 import java.util.Date;
@@ -157,6 +157,13 @@ public void setId(int id) {
  */
 public int getId() {
 	return id;
+}
+
+/**
+ * @param datum the datum to set
+ */
+public void setDatum(Date datum) {
+	this.datum = datum;
 }
 
 }
