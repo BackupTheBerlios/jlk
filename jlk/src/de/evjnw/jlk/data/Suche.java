@@ -14,10 +14,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Suche.java,v 1.4 2009/03/21 15:28:06 ma08 Exp $
+   $Id: Suche.java,v 1.5 2009/03/22 11:49:59 ma08 Exp $
  */
 package de.evjnw.jlk.data;
-import java.text.DateFormat;
 import java.util.Date;
 /**
  * Diese Klasse wird mit den Suchdaten gefüttert um dann die Suche auszuführen.
