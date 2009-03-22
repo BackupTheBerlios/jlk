@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: BenutzerDaoImpl.java,v 1.3 2009/03/21 15:28:06 ma08 Exp $
+   $Id: BenutzerDaoImpl.java,v 1.4 2009/03/22 15:24:37 ma08 Exp $
  */
 package de.evjnw.jlk.work.impl;
 
@@ -34,8 +34,8 @@ import de.evjnw.jlk.work.dao.BenutzerDao;
 import de.evjnw.jlk.work.dao.DaoException;
 
 /**
- * Diese Klasse bietet die Hibernate-basierte Implementierung
- * des {@link BenutzerDao}.
+ * Diese Klasse bietet die Hibernate-basierte Implementierung des
+ * {@link BenutzerDao}.
  * 
  * @author Stephan
  */
@@ -55,12 +55,15 @@ public class BenutzerDaoImpl implements BenutzerDao {
 			criteria.add(Restrictions.idEq(id));
 			o = criteria.uniqueResult();
 		} catch (HibernateException e) {
-			throw new DaoException("Fehler beim Laden des Benutzers mit id="+id+" : "+e.getMessage(), e);
+			throw new DaoException("Fehler beim Laden des Benutzers mit id="
+					+ id + " : " + e.getMessage(), e);
 		}
 		if (o == null) {
-			throw new DaoException("Kein Benutzer vorhanden mit id="+id);
+			throw new DaoException("Kein Benutzer vorhanden mit id=" + id);
 		}
-		return (Benutzer) o;
+		Benutzer benutzer = (Benutzer) o;
+		benutzer.getFavoriten();
+		return benutzer;
 	}
 
 	/**
@@ -70,6 +73,7 @@ public class BenutzerDaoImpl implements BenutzerDao {
 	public List<Benutzer> liste() {
 		Session session = factory.getCurrentSession();
 		Criteria criteria = session.createCriteria(Benutzer.class);
+		
 		return criteria.list();
 	}
 
@@ -84,7 +88,6 @@ public class BenutzerDaoImpl implements BenutzerDao {
 		return q.list();
 	}
 
-	
 	/**
 	 * @see de.evjnw.jlk.work.dao.BenutzerDao#speicher(de.evjnw.jlk.data.Benutzer)
 	 */
@@ -93,8 +96,16 @@ public class BenutzerDaoImpl implements BenutzerDao {
 		session.saveOrUpdate(b);
 	}
 
-	// common transaction handling 
-	
+	/**
+	 * @see de.evjnw.jlk.work.dao.BenutzerDao#speicher(de.evjnw.jlk.data.Favoriten)
+	 */
+	public void speicher(Favoriten b) {
+		Session session = factory.getCurrentSession();
+		session.saveOrUpdate(b);
+	}
+
+	// common transaction handling
+
 	/**
 	 * @see de.evjnw.jlk.work.dao.BenutzerDao#commitTransaction()
 	 */
@@ -121,7 +132,9 @@ public class BenutzerDaoImpl implements BenutzerDao {
 
 	/**
 	 * Dependency injection der Hibernate {@link SessionFactory}.
-	 * @param factory the factory to set
+	 * 
+	 * @param factory
+	 *            the factory to set
 	 */
 	public void setFactory(SessionFactory factory) {
 		this.factory = factory;

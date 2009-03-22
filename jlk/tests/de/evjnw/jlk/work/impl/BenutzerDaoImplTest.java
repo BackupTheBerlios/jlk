@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: BenutzerDaoImplTest.java,v 1.4 2009/03/22 14:13:25 ma08 Exp $
+   $Id: BenutzerDaoImplTest.java,v 1.5 2009/03/22 15:24:37 ma08 Exp $
  */
 package de.evjnw.jlk.work.impl;
 
@@ -26,6 +26,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import de.evjnw.jlk.data.Benutzer;
+import de.evjnw.jlk.data.Favoriten;
 import de.evjnw.jlk.work.dao.BenutzerDao;
 import junit.framework.TestCase;
 
@@ -85,6 +86,9 @@ public class BenutzerDaoImplTest extends TestCase {
 		assertTrue("die Liste ist nicht leer", bl.size() > 0);
 		for (Benutzer b : bl) {
 			log.info("Benutzer "+b.getId()+": "+b.getVorname()+" "+b.getNachname());
+			for(Favoriten fav :b.getFavoriten()){
+				log.info("Favorit "+fav.getId()+": "+fav.getBewertung());
+			}
 		}
 	}
 
@@ -98,4 +102,37 @@ public class BenutzerDaoImplTest extends TestCase {
 		component.commitTransaction();
 	}
 
+	public void testSpeicherMitFavoriten() {
+		Benutzer b = new Benutzer("Birte", "Buhmann");
+		Favoriten fav = new Favoriten();
+		Favoriten fav2 = new Favoriten();
+		Favoriten fav3 = new Favoriten();
+		Favoriten fav4 = new Favoriten();
+		Favoriten fav5 = new Favoriten();
+		Favoriten fav6 = new Favoriten();
+		fav.setBewertung(23);
+		fav2.setBewertung(20);
+		fav3.setBewertung(2);
+		fav4.setBewertung(10);
+		fav5.setBewertung(40);
+		fav6.setBewertung(-40);
+		fav.setBenutzer(b);
+		fav2.setBenutzer(b);
+		fav3.setBenutzer(b);
+		fav4.setBenutzer(b);
+//		b.getFavoriten().add(fav);
+//		b.getFavoriten().add(fav2);
+//		b.getFavoriten().add(fav3);
+//		b.getFavoriten().add(fav4);
+    	
+		
+		b.addFavoriten(fav5);
+		b.addFavoriten(fav6);
+		component.startTransaction();
+		component.speicher(b);
+//		component.speicher(fav);
+		component.commitTransaction();
+	}
+	
+	
 }

@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: BenutzerDao.java,v 1.1 2009/01/03 18:30:23 sgrossnw Exp $
+   $Id: BenutzerDao.java,v 1.2 2009/03/22 15:24:37 ma08 Exp $
  */
 package de.evjnw.jlk.work.dao;
 
@@ -24,6 +24,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import de.evjnw.jlk.data.Benutzer;
+import de.evjnw.jlk.data.Favoriten;
 
 /**
  * Dieses Interface bildet die Schnittstelle eines Zugriffsobjekts 
@@ -55,6 +56,14 @@ public interface BenutzerDao {
 	 */
 	public void speicher(Benutzer b);
 	
+	/**
+	 * Speichert das &uuml;bergebene Favoriten-Objekt.
+	 * Wenn die <em>id</em> noch 0 ist, wird eine neue ID vergeben.
+	 * @param b das zu speichernde Objekt, darf nicht <code>null</code> 
+	 * sein
+	 */
+	public void speicher(Favoriten f);
+
 	/**
 	 * Listet die gespeicherten Benutzer-Objekte auf. 
 	 */

@@ -14,10 +14,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Benutzer.java,v 1.5 2009/03/21 15:28:05 ma08 Exp $
+   $Id: Benutzer.java,v 1.6 2009/03/22 15:24:37 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -39,16 +40,17 @@ public class Benutzer extends DataModell {
 	/**
 	 * Seine Liste mit Favoriten
 	 */
-	private List<Favoriten> favoriten;
+	private List<Favoriten> favoriten = new ArrayList<Favoriten>();
 	/**
 	 * Seine Liste mit gespeicherten Suchen.
 	 */
-	private List<Suche> suche;
+	private List<Suche> suche = new ArrayList<Suche>();
 
 	/** Default Constructor */
 	public Benutzer() {
+		
 	}
-	
+
 	/**
 	 * Einen Benutzer erzeugen
 	 */
@@ -57,6 +59,16 @@ public class Benutzer extends DataModell {
 		this.setNachname(Nachname);
 
 		this.setPasswort("Test");
+	}
+
+	/**
+	 * Fügt dem Benutzer ein Favorit hinzu
+	 * 
+	 * @param fav
+	 */
+	public void addFavoriten(Favoriten fav) {
+		getFavoriten().add(fav);
+		fav.setBenutzer(this);
 	}
 
 	/**
