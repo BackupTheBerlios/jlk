@@ -14,14 +14,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: BenutzerDaoImplTest.java,v 1.3 2009/03/21 20:59:11 sgrossnw Exp $
+   $Id: BenutzerDaoImplTest.java,v 1.4 2009/03/22 14:13:25 ma08 Exp $
  */
 package de.evjnw.jlk.work.impl;
 
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.h2.util.FileUtils;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import de.evjnw.jlk.data.Benutzer;
 import de.evjnw.jlk.work.dao.BenutzerDao;
@@ -37,6 +39,7 @@ public class BenutzerDaoImplTest extends TestCase {
 	
 	/** zu testende Komponente. */
 	private BenutzerDao component; 
+	SessionFactory sf;
 	
 	/**
 	 * @see junit.framework.TestCase#setUp()
@@ -44,6 +47,15 @@ public class BenutzerDaoImplTest extends TestCase {
 	protected void setUp() throws Exception {
 		DaoFactoryImpl factory = new DaoFactoryImpl("sa", "");
 		component = factory.getBenutzerDao();
+		sf = factory.factory;
+	}
+	
+	protected void tearDown() {
+		Session sess = sf.getCurrentSession();
+		Transaction t = sess.beginTransaction();
+		sess.createSQLQuery("SHUTDOWN").executeUpdate();
+		t.commit();
+//		sess.close();
 	}
 
 	/**
