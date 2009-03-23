@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Benutzer.java,v 1.6 2009/03/22 15:24:37 ma08 Exp $
+   $Id: Benutzer.java,v 1.7 2009/03/23 19:09:23 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 
@@ -48,7 +48,7 @@ public class Benutzer extends DataModell {
 
 	/** Default Constructor */
 	public Benutzer() {
-		
+
 	}
 
 	/**
@@ -70,7 +70,15 @@ public class Benutzer extends DataModell {
 		getFavoriten().add(fav);
 		fav.setBenutzer(this);
 	}
-
+	
+	/**
+	 * Fügt dem Benutzer eine Suche hinzu
+	 * @param search
+	 */
+	public void addSuche(Suche search) {
+		getSuche().add(search);
+		search.setBenutzer(this);
+	}
 	/**
 	 * Diese Methode erzeugt ein Password
 	 */

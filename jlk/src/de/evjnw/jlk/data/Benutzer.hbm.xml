@@ -33,6 +33,10 @@
 			<key column="benutzer" />
 			<one-to-many class="Favoriten" />
 		</bag>
+		<bag name="suche" inverse="true" cascade="all,delete-orphan" lazy="false">
+			<key column="benutzer" />
+			<one-to-many class="Suche" />
+		</bag>
 
 	</class>
 

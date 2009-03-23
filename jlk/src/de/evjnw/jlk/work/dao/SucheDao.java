@@ -14,55 +14,55 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: BenutzerDao.java,v 1.3 2009/03/23 19:09:23 ma08 Exp $
+   $Id: SucheDao.java,v 1.1 2009/03/23 19:09:23 ma08 Exp $
  */
 package de.evjnw.jlk.work.dao;
 
 import java.util.List;
 
 import de.evjnw.jlk.data.Benutzer;
-import de.evjnw.jlk.data.Favoriten;
+import de.evjnw.jlk.data.Suche;
+
 
 /**
  * Dieses Interface bildet die Schnittstelle eines Zugriffsobjekts 
- * (Data Access Object) f&uuml;r {@link Benuzter} Domain-Objekte.
+ * (Data Access Object) f&uuml;r {@link Suche} Domain-Objekte.
  * Die Domain-Objekte werden in einem externen Speicher gehalten. 
  * <p>
  * Verwendet das DAO Pattern (Architektur 5 Struktur). 
- * @author Stephan
+ * @author Mario
  */
-public interface BenutzerDao {
+public interface SucheDao {
 
 	public void startTransaction();
 	public void commitTransaction();
 	public void rollbackTransaction();
 	
 	/**
-	 * Lade den Benutzer mit der angegebenen ID
-	 * @param id identifiziert den Benutzer
-	 * @return das (zuvor gespeicherte) Benutzer-Objekt
-	 * @throws DaoException wenn kein Benutzer zur angegebenen ID gespeichert ist 
+	 * Lade die Suche mit der angegebenen ID
+	 * @param id identifiziert die Suche
+	 * @return das (zuvor gespeicherte)Such-Objekt
+	 * @throws DaoException wenn keine Suche zur angegebenen ID gespeichert ist 
 	 */
-	public Benutzer lade(int id) throws DaoException;
+	public Suche lade(int id) throws DaoException;
 	
 	/**
-	 * Speichert das &uuml;bergebene Benutzer-Objekt.
+	 * Speichert das &uuml;bergebene Such-Objekt.
 	 * Wenn die <em>id</em> noch 0 ist, wird eine neue ID vergeben.
 	 * @param b das zu speichernde Objekt, darf nicht <code>null</code> 
 	 * sein
 	 */
-	public void speicher(Benutzer b);
+	public void speicher(Suche b);
 	
 	/**
-	 * Speichert das &uuml;bergebene Favoriten-Objekt.
-	 * Wenn die <em>id</em> noch 0 ist, wird eine neue ID vergeben.
-	 * @param b das zu speichernde Objekt, darf nicht <code>null</code> 
-	 * sein
+	 * Listet die gespeicherten Such-Objekte auf. 
 	 */
-	public void speicher(Favoriten f);
-
+	public List<Suche> liste();
+	
 	/**
-	 * Listet die gespeicherten Benutzer-Objekte auf. 
+	 * Listet alle Suchen zu einem Benutzer
+	 * @param b Benutzerobjekt
+	 * @return eine Liste mit allen Suchobjekten
 	 */
-	public List<Benutzer> liste();
+	public List<Suche> liste(Benutzer b);
 }
