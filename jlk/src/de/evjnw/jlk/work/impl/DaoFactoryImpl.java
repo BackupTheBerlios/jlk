@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: DaoFactoryImpl.java,v 1.5 2009/03/22 14:13:03 ma08 Exp $
+   $Id: DaoFactoryImpl.java,v 1.6 2009/04/04 18:01:53 ma08 Exp $
  */
 package de.evjnw.jlk.work.impl;
 
@@ -24,8 +24,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
+import de.evjnw.jlk.work.dao.AnhangDao;
 import de.evjnw.jlk.work.dao.BenutzerDao;
 import de.evjnw.jlk.work.dao.DaoFactory;
+import de.evjnw.jlk.work.dao.LiedDao;
+import de.evjnw.jlk.work.dao.SucheDao;
 
 /**
  * Diese Klasse bietet die Hibernate-basierte Implementierung der
@@ -38,8 +41,8 @@ public class DaoFactoryImpl implements DaoFactory {
 
 	SessionFactory factory;
 
-	/** 
-	 * Mit diesem Flag könnnen wir steuern, ob während der Entwicklungsphase 
+	/**
+	 * Mit diesem Flag könnnen wir steuern, ob während der Entwicklungsphase
 	 * automatisch die Datenbank-Skripte erzeugt werden sollen.
 	 */
 	private boolean exportSchemaForTests = false;
@@ -48,6 +51,14 @@ public class DaoFactoryImpl implements DaoFactory {
 	 * Benutzer DAO.
 	 */
 	private BenutzerDaoImpl benutzerDao;
+	/**
+	 * Anhang DAO.
+	 */
+	private AnhangDaoImpl anhangDao;
+
+	private SucheDaoImpl sucheDao;
+
+	private LiedDaoImpl liedDao;
 
 	/**
 	 * @param user
@@ -74,7 +85,13 @@ public class DaoFactoryImpl implements DaoFactory {
 		factory = configuration.buildSessionFactory();
 
 		benutzerDao = new BenutzerDaoImpl();
+		anhangDao = new AnhangDaoImpl();
+		sucheDao = new SucheDaoImpl();
+		liedDao = new LiedDaoImpl();
 		benutzerDao.setFactory(factory);
+		anhangDao.setFactory(factory);
+		sucheDao.setFactory(factory);
+		liedDao.setFactory(factory);
 		// TODO: die anderen DAOs initialisieren
 	}
 
@@ -85,4 +102,13 @@ public class DaoFactoryImpl implements DaoFactory {
 		return benutzerDao;
 	}
 
+	public AnhangDao getAnhangDao() {
+		return anhangDao;
+	}
+	public SucheDao getSucheDao() {
+		return sucheDao;
+	}
+	public LiedDao getLiedDao() {
+		return liedDao;
+	}
 }

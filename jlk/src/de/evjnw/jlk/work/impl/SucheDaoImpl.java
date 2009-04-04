@@ -79,5 +79,13 @@ public class SucheDaoImpl implements SucheDao {
 		transaction = session.beginTransaction();
 
 	}
-
+	/**
+	 * Dependency injection der Hibernate {@link SessionFactory}.
+	 * 
+	 * @param factory
+	 *            the factory to set
+	 */
+	public void setFactory(SessionFactory factory) {
+		this.factory = factory;
+	}
 }

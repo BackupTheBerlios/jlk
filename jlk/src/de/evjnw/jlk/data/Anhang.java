@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Anhang.java,v 1.3 2008/12/09 10:26:49 ma08 Exp $
+   $Id: Anhang.java,v 1.4 2009/04/04 18:01:53 ma08 Exp $
  */
 package de.evjnw.jlk.data;
 /**
@@ -23,6 +23,18 @@ package de.evjnw.jlk.data;
  */
 public class Anhang extends DataModell{
 
+	/**
+	 * Das Material, in dem dieser Anhang verwendet wird.
+	 * Für Hibernate benötigt und darf auch nur von Hibernate zum schreiben genutzt werden. 
+	 */
+	private Material material;
+	
+	/**
+	 * Die Zusammenstellung, in dem dieser Anhang verwendet wird.
+	 * Für Hibernate benötigt und darf auch nur von Hibernate zum schreiben genutzt werden.
+	 */
+	private Zusammenstellung zusammenstellung;
+	
 	/**
 	 * Der Titel des Anhangs. 
 	*/
@@ -74,6 +86,7 @@ public class Anhang extends DataModell{
 		this.setAkkordart(Akkordart);
 		this.setNotensatz(Notensatz);
 	}
+	public Anhang(){}
 	
 	/**
 	 * @return the titel
@@ -158,6 +171,34 @@ public class Anhang extends DataModell{
 	 */
 	public void setNotensatz(String notensatz) {
 		this.notensatz = notensatz;
+	}
+
+	/**
+	 * @return the material
+	 */
+	public Material getMaterial() {
+		return material;
+	}
+
+	/**
+	 * @param material the material to set
+	 */
+	public void setMaterial(Material material) {
+		this.material = material;
+	}
+
+	/**
+	 * @return the zusammenstelllung
+	 */
+	public Zusammenstellung getZusammenstellung() {
+		return zusammenstellung;
+	}
+
+	/**
+	 * @param zusammenstelllung the zusammenstelllung to set
+	 */
+	public void setZusammenstellung(Zusammenstellung zusammenstellung) {
+		this.zusammenstellung = zusammenstellung;
 	}
 	
 }

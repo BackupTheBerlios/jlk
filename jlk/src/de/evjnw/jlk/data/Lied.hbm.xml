@@ -18,7 +18,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $$Id: Lied.hbm.xml,v 1.1 2009/03/21 15:28:06 ma08 Exp $$
+   $$Id: Lied.hbm.xml,v 1.2 2009/04/04 18:01:53 ma08 Exp $$
     -->
 <hibernate-mapping package="de.evjnw.jlk.data">
   <class name="Lied">
@@ -34,6 +34,10 @@
 	<property name="titel" />
 	<property name="interpret" />
 	<property name="thema" />
-	<!-- //TODO:Mapping für Material und Verknüpfung-->
+	<bag name="material" inverse="true" cascade="all,delete-orphan" lazy="false">
+			<key column="lied" />
+			<one-to-many class="Material" />
+	</bag>
+	<!-- TODO: Mapping der Verknüpfungen -->
  </class>
 </hibernate-mapping>

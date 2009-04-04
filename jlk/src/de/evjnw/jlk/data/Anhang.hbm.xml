@@ -18,7 +18,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $$Id: Anhang.hbm.xml,v 1.1 2009/03/21 15:28:06 ma08 Exp $$
+   $$Id: Anhang.hbm.xml,v 1.2 2009/04/04 18:01:53 ma08 Exp $$
     -->
 <hibernate-mapping package="de.evjnw.jlk.data">
   <class name="Anhang">
@@ -31,6 +31,8 @@
     <property name="hinzugefuegtDurch" />
     <property name="geaendertAm" type="date"/>
 <!-- Ende Attribute der abstrakten Basisklasse -->
+	<many-to-one name="material" column="material"/>
+	<many-to-one name="zusammenstellung" column="zusammenstellung"/>
 	<property name="titel" />
 	<property name="beschreibung"/>
 	<property name="link"/>

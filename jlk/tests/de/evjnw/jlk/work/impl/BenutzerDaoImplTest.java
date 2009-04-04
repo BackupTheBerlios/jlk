@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: BenutzerDaoImplTest.java,v 1.5 2009/03/22 15:24:37 ma08 Exp $
+   $Id: BenutzerDaoImplTest.java,v 1.6 2009/04/04 18:01:53 ma08 Exp $
  */
 package de.evjnw.jlk.work.impl;
 
@@ -120,17 +120,11 @@ public class BenutzerDaoImplTest extends TestCase {
 		fav2.setBenutzer(b);
 		fav3.setBenutzer(b);
 		fav4.setBenutzer(b);
-//		b.getFavoriten().add(fav);
-//		b.getFavoriten().add(fav2);
-//		b.getFavoriten().add(fav3);
-//		b.getFavoriten().add(fav4);
-    	
-		
 		b.addFavoriten(fav5);
 		b.addFavoriten(fav6);
 		component.startTransaction();
 		component.speicher(b);
-//		component.speicher(fav);
+
 		component.commitTransaction();
 	}
 	

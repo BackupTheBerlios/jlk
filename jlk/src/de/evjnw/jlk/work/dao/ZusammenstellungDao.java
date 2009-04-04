@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: BenutzerDao.java,v 1.4 2009/04/04 18:01:53 ma08 Exp $
+   $Id: ZusammenstellungDao.java,v 1.1 2009/04/04 18:01:53 ma08 Exp $
  */
 package de.evjnw.jlk.work.dao;
 
@@ -25,13 +25,13 @@ import de.evjnw.jlk.data.Favoriten;
 
 /**
  * Dieses Interface bildet die Schnittstelle eines Zugriffsobjekts 
- * (Data Access Object) f&uuml;r {@link Benuzter} Domain-Objekte.
+ * (Data Access Object) f&uuml;r {@link Zusammenstellung} Domain-Objekte.
  * Die Domain-Objekte werden in einem externen Speicher gehalten. 
  * <p>
  * Verwendet das DAO Pattern (Architektur 5 Struktur). 
- * @author Stephan
+ * @author Mario
  */
-public interface BenutzerDao {
+public interface ZusammenstellungDao {
 
 	public void startTransaction();
 	public void commitTransaction();
@@ -53,7 +53,13 @@ public interface BenutzerDao {
 	 */
 	public void speicher(Benutzer b);
 	
-	
+	/**
+	 * Speichert das &uuml;bergebene Favoriten-Objekt.
+	 * Wenn die <em>id</em> noch 0 ist, wird eine neue ID vergeben.
+	 * @param b das zu speichernde Objekt, darf nicht <code>null</code> 
+	 * sein
+	 */
+	public void speicher(Favoriten f);
 
 	/**
 	 * Listet die gespeicherten Benutzer-Objekte auf. 

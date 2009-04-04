@@ -1,6 +1,6 @@
 /* 
    JLK - Java Lieder Katalog
-   Copyright 2008, Stephan Gross
+   Copyright 2008-2009, Mario Aldag
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: BenutzerDaoImpl.java,v 1.5 2009/04/04 18:01:53 ma08 Exp $
+   $Id: LiedDaoImpl.java,v 1.1 2009/04/04 18:01:53 ma08 Exp $
  */
 package de.evjnw.jlk.work.impl;
 
@@ -22,102 +22,67 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import de.evjnw.jlk.data.Benutzer;
-import de.evjnw.jlk.data.Favoriten;
-import de.evjnw.jlk.work.dao.BenutzerDao;
+import de.evjnw.jlk.data.Lied;
 import de.evjnw.jlk.work.dao.DaoException;
+import de.evjnw.jlk.work.dao.LiedDao;
 
-/**
- * Diese Klasse bietet die Hibernate-basierte Implementierung des
- * {@link BenutzerDao}.
- * 
- * @author Stephan
- */
-public class BenutzerDaoImpl implements BenutzerDao {
+public class LiedDaoImpl implements LiedDao {
 
 	private SessionFactory factory;
 	private Transaction transaction;
 
-	/**
-	 * @see de.evjnw.jlk.work.dao.BenutzerDao#lade(int)
-	 */
-	public Benutzer lade(int id) throws DaoException {
+	public Lied lade(int id) throws DaoException {
+
 		Object o;
 		try {
 			Session session = factory.getCurrentSession();
-			Criteria criteria = session.createCriteria(Benutzer.class);
+			Criteria criteria = session.createCriteria(Lied.class);
 			criteria.add(Restrictions.idEq(id));
 			o = criteria.uniqueResult();
 		} catch (HibernateException e) {
-			throw new DaoException("Fehler beim Laden des Benutzers mit id="
-					+ id + " : " + e.getMessage(), e);
+			throw new DaoException("Fehler beim Laden des Liedes mit id=" + id
+					+ " : " + e.getMessage(), e);
 		}
 		if (o == null) {
-			throw new DaoException("Kein Benutzer vorhanden mit id=" + id);
+			throw new DaoException("Kein Lied vorhanden mit id=" + id);
 		}
-		Benutzer benutzer = (Benutzer) o;
-		benutzer.getFavoriten();
-		return benutzer;
+		Lied anhang = (Lied) o;
+
+		return anhang;
 	}
 
-	/**
-	 * @see de.evjnw.jlk.work.dao.BenutzerDao#liste()
-	 */
 	@SuppressWarnings("unchecked")
-	public List<Benutzer> liste() {
+	public List<Lied> liste() {
 		Session session = factory.getCurrentSession();
-		Criteria criteria = session.createCriteria(Benutzer.class);
-		
+		Criteria criteria = session.createCriteria(Lied.class);
+
 		return criteria.list();
 	}
 
-	/**
-	 * @see de.evjnw.jlk.work.dao.BenutzerDao#liste()
-	 */
-	@SuppressWarnings("unchecked")
-	public List<Favoriten> listeFavoriten(Benutzer benutzer) {
-		Session session = factory.getCurrentSession();
-		Query q = session.createQuery("FROM Favoriten f where f.benutzer = :b");
-		q.setEntity("b", benutzer);
-		return q.list();
-	}
-
-	/**
-	 * @see de.evjnw.jlk.work.dao.BenutzerDao#speicher(de.evjnw.jlk.data.Benutzer)
-	 */
-	public void speicher(Benutzer b) {
+	public void speicher(Lied b) {
 		Session session = factory.getCurrentSession();
 		session.saveOrUpdate(b);
 	}
 
-
 	// common transaction handling
 
-	/**
-	 * @see de.evjnw.jlk.work.dao.BenutzerDao#commitTransaction()
-	 */
+	
 	public void commitTransaction() {
 		transaction.commit();
 		factory.getCurrentSession().close();
 	}
 
-	/**
-	 * @see de.evjnw.jlk.work.dao.BenutzerDao#rollbackTransaction()
-	 */
+	
 	public void rollbackTransaction() {
 		transaction.rollback();
 		factory.getCurrentSession().close();
 	}
 
-	/**
-	 * @see de.evjnw.jlk.work.dao.BenutzerDao#startTransaction()
-	 */
 	public void startTransaction() {
 		Session session = factory.getCurrentSession();
 		transaction = session.beginTransaction();
@@ -133,4 +98,5 @@ public class BenutzerDaoImpl implements BenutzerDao {
 		this.factory = factory;
 	}
 
+	
 }

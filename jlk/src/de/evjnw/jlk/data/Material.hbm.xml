@@ -18,7 +18,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Material.hbm.xml,v 1.1 2009/03/21 15:28:06 ma08 Exp $
+   $Id: Material.hbm.xml,v 1.2 2009/04/04 18:01:53 ma08 Exp $
     -->
 <hibernate-mapping package="de.evjnw.jlk.data">
   <class name="Material">
@@ -37,6 +37,11 @@
 	<property name="tonart" />
 	<property name="takt" />
 	<property name="akkorde" />
-	<!-- Todo: Mapping für Anhänge -->
+	<bag name="anhang" inverse="true" cascade="all,delete-orphan" lazy="false">
+			<key column="material" />
+			<one-to-many class="Anhang" />
+	</bag>
+	<many-to-one name="lied" column="lied" class="Lied" />
+	
  </class>
 </hibernate-mapping>
