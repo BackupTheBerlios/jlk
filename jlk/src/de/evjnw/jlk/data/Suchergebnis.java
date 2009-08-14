@@ -14,31 +14,36 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Suchergebnis.java,v 1.3 2009/03/22 14:14:02 ma08 Exp $
+   $Id: Suchergebnis.java,v 1.4 2009/08/14 23:31:42 sgrossnw Exp $
  */
 package de.evjnw.jlk.data;
+
 /**
  * Diese Klasse stellt das Suchergebnis dar und wird von der Suchmethode aufgerufen,
  * die von der Klasse Suche eine Suche erhält. 
  * 
  * @author Mario Aldag
  */
-public class Suchergebnis{
-
+public class Suchergebnis {
+	// TODO: ist das hier wirklich eine persistente Klasse mit Hibernate-Mapping?
+	
 	private int id;
-	/**
- * Die alte Suche wird hier gespeichert.
-*/
-private Suche suche;
 
-/**
- * Das Ergebnis als mehrdimensionaler String für eine tabellarische Übersicht.
-*/
-private String[][] ergebnis;
-/**
- * Die Dauer der Suchanfrage
-*/
-private int dauer;
+	/**
+	 * Die alte Suche wird hier gespeichert.
+	 */
+	private Suche suche;
+
+	/**
+	 * Das Ergebnis als mehrdimensionaler String für eine tabellarische
+	 * Übersicht.
+	 */
+	private String[][] ergebnis;
+
+	/**
+	 * Die Dauer der Suchanfrage
+	 */
+	private int dauer;
 
 /**
  * 
