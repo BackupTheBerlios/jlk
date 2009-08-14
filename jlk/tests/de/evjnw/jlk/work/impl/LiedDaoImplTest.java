@@ -16,6 +16,7 @@ import junit.framework.TestCase;
 
 public class LiedDaoImplTest extends TestCase {
 
+	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(LiedDaoImplTest.class);
 
 	/** zu testende Komponente. */
