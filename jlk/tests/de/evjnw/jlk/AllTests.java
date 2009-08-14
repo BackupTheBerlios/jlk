@@ -14,13 +14,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: AllTests.java,v 1.2 2008/12/09 09:26:11 ma08 Exp $
+   $Id: AllTests.java,v 1.3 2009/08/14 20:52:50 sgrossnw Exp $
  */
 package de.evjnw.jlk;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
+import de.evjnw.jlk.data.BenutzerTest;
 import de.evjnw.jlk.data.LiedTest;
+import de.evjnw.jlk.work.impl.AllDaoTests;
 
 /**
  * Diese Test-Suite ruft alle UnitTests auf.  
@@ -34,7 +36,10 @@ public class AllTests {
 		//$JUnit-BEGIN$
 		suite.addTestSuite(LiedBrowserTest.class);
 		
+		suite.addTestSuite(BenutzerTest.class);
 		suite.addTestSuite(LiedTest.class);
+		
+		suite.addTest(AllDaoTests.suite());
 		//$JUnit-END$
 		return suite;
 	}
