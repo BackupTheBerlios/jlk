@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Suche.java,v 1.7 2009/04/04 18:01:53 ma08 Exp $
+   $Id: Suche.java,v 1.8 2009/08/14 23:28:15 sgrossnw Exp $
  */
 package de.evjnw.jlk.data;
 import java.util.Date;
@@ -67,6 +67,9 @@ public Suche(String Suchtext){
 	this.setErgebnisseProSeite(10);
 	//this.setBenutzer("ANONYMUS");
 }
+/**
+ * Default ctor für Hibernate.
+ */
 public Suche(){};
 /**
  * @return the suchtext
