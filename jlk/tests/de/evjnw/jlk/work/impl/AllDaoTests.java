@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: AllDaoTests.java,v 1.1 2009/08/14 20:51:16 sgrossnw Exp $
+   $Id: AllDaoTests.java,v 1.2 2009/08/14 22:07:37 sgrossnw Exp $
  */
 package de.evjnw.jlk.work.impl;
 
@@ -27,7 +27,7 @@ public class AllDaoTests {
 		TestSuite suite = new TestSuite("Tests for DAO in de.evjnw.jlk.work.impl");
 		//$JUnit-BEGIN$
 //		suite.addTestSuite(SucheDaoImplTest.class);
-//		suite.addTestSuite(LiedDaoImplTest.class);
+		suite.addTestSuite(LiedDaoImplTest.class);
 //		suite.addTestSuite(AnhangDaoImplTest.class);
 		suite.addTestSuite(BenutzerDaoImplTest.class);
 		//$JUnit-END$
