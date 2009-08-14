@@ -14,11 +14,14 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Visualizer.java,v 1.2 2008/12/11 14:49:45 sgrossnw Exp $
+   $Id: Visualizer.java,v 1.3 2009/08/14 23:38:21 sgrossnw Exp $
  */
 package de.evjnw.jlk.work;
 
+import java.util.List;
 import java.util.Set;
+
+import de.evjnw.jlk.data.DataModell;
 
 /**
  * Dieses Interface bietet die Darstellung von Daten und Meldungen. 
@@ -57,4 +60,12 @@ public interface Visualizer {
 	public enum UserChoice {
 		OK, CANCEL, YES, NO;
 	}
+	
+	/**
+	 * Startet die Darstellung eines neuen Views.
+	 * @param view der Name des neuen Views
+	 * @param models die anzuzeigenden Datenmodelle
+	 * @param data zusätzlich anzuzeigende Daten, die nicht als Datenmodell vorliegen
+	 */
+	public void display(String view, List<DataModell> models, List<Object> data);
 }

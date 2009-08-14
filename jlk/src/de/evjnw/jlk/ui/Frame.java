@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Frame.java,v 1.4 2008/12/11 14:49:45 sgrossnw Exp $
+   $Id: Frame.java,v 1.5 2009/08/14 23:39:23 sgrossnw Exp $
  */
 package de.evjnw.jlk.ui;
 
@@ -22,12 +22,14 @@ import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.List;
 import java.util.Set;
 
 import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import de.evjnw.jlk.data.DataModell;
 import de.evjnw.jlk.work.Performer;
 import de.evjnw.jlk.work.Visualizer;
 
@@ -159,6 +161,11 @@ public class Frame implements Visualizer {
 	 * @see de.evjnw.jlk.work.Visualizer#presentInformation(java.lang.String, java.lang.String, de.evjnw.jlk.work.Visualizer.InfoType)
 	 */
 	public void presentInformation(String title, String message, InfoType type) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void display(String view, List<DataModell> models, List<Object> data) {
 		// TODO Auto-generated method stub
 		
 	}	
