@@ -14,18 +14,28 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: DaoFactoryImpl.java,v 1.6 2009/04/04 18:01:53 ma08 Exp $
+   $Id: DaoFactoryImpl.java,v 1.7 2009/08/14 20:26:57 sgrossnw Exp $
  */
 package de.evjnw.jlk.work.impl;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.w3c.dom.Document;
+import org.xml.sax.EntityResolver;
+import org.xml.sax.SAXException;
 
 import de.evjnw.jlk.work.dao.AnhangDao;
 import de.evjnw.jlk.work.dao.BenutzerDao;
+import de.evjnw.jlk.work.dao.DaoConfigurationException;
 import de.evjnw.jlk.work.dao.DaoFactory;
 import de.evjnw.jlk.work.dao.LiedDao;
 import de.evjnw.jlk.work.dao.SucheDao;
@@ -65,11 +75,37 @@ public class DaoFactoryImpl implements DaoFactory {
 	 *            technischer Benutzer an der Datenbank
 	 * @param password
 	 *            Passwort des technischen Benutzers an der Datenbank
+	 * @throws DaoConfigurationException 
+	 * 			wenn bei der Verarbeitung der Hibernate Configuration ein Fehler auftritt
 	 */
-	public DaoFactoryImpl(String user, String password) {
+	public DaoFactoryImpl(String user, String password) throws DaoConfigurationException {
 		// TODO: sollte eigentlich eine Ressource im Classpath sein
 		File f = new File("hibernate.cfg.xml");
 		Configuration configuration = new Configuration().configure(f);
+
+		// funktioniert noch nicht, da der Parser versucht, die DTD (per HTTP) aufzulösen, 
+		// ich muss hier mit Unterstützung der API den Entity Resolver für einen lokalen
+		// Catalog konfigurieren
+//		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+//		Document d = null;
+//		try {
+//			DocumentBuilder db = dbf.newDocumentBuilder();
+//			EntityResolver er = null;
+//			db.setEntityResolver(er);
+//			InputStream is = getClass().getResourceAsStream("/hibernate.cfg.xml");
+//			if (is == null) {
+//				throw new DaoConfigurationException("the configuration was not found on the classpath");
+//			}
+//			d = db.parse(is);
+//		} catch (ParserConfigurationException e) {
+//			throw new DaoConfigurationException("could not initialize XML parser:"+e.getMessage(), e);
+//		} catch (SAXException e) {
+//			throw new DaoConfigurationException(e);
+//		} catch (IOException e) {
+//			throw new DaoConfigurationException("could not access the hibernate configuration:"+e.getMessage(), e);
+//		}
+//		Configuration configuration = new Configuration().configure(d);
+		
 		// TODO: Benutzer und Passwort in der Configuration ersetzen
 
 		// configuration.setInterceptor(new LastModifiedInterceptor());
@@ -102,6 +138,9 @@ public class DaoFactoryImpl implements DaoFactory {
 		return benutzerDao;
 	}
 
+	/**
+	 * @see de.evjnw.jlk.work.dao.DaoFactory#getAnhangDao()
+	 */
 	public AnhangDao getAnhangDao() {
 		return anhangDao;
 	}
