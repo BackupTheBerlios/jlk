@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-     $Id: build.xml,v 1.6 2009/01/05 11:37:03 sgrossnw Exp $
+     $Id: build.xml,v 1.7 2009/08/14 20:47:03 sgrossnw Exp $
 
      JLK
      Java Lieder Katalog
@@ -59,7 +59,8 @@
 
 	<path id="jdbc.driver" description="needed libs for JDBC access during runtime">
 		<fileset dir="${lib.dir}">
-			<include name="h2.jar"/>
+<!--			<include name="h2.jar"/>-->
+			<include name="hsqldb.jar"/>
 		</fileset>
 	</path>
 	
