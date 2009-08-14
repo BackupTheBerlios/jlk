@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-     $Id: build.xml,v 1.7 2009/08/14 20:47:03 sgrossnw Exp $
+     $Id: build.xml,v 1.8 2009/08/14 22:05:36 sgrossnw Exp $
 
      JLK
      Java Lieder Katalog
@@ -37,6 +37,7 @@
 	<property name="archive.name" value="jlk.jar"/>
 	<property name="src.dir" location="src"/>
 	<property name="src.test.dir" location="tests"/>
+	<property name="run.test.dir" location="${build.dir}/runtests"/>
 	<property name="lib.dir" location="libs"/>
 	<property name="dist.dir" description="the distribution is built in this directory" 
 		location="dist"/>
@@ -92,6 +93,7 @@
         <mkdir dir="${build.dir}"/>
     	<mkdir dir="${build.classes.dir}"/>
     	<mkdir dir="${build.test.dir}" />
+		<mkdir dir="${run.test.dir}" />
 		<mkdir dir="${testout.dir}" />
 		<mkdir dir="${testreport.dir}" />
     	<mkdir dir="${dist.dir}" />
@@ -148,9 +150,24 @@
 	<target name="test" description="executes unit tests" 
 		depends="build" >
 		
+		<copy description="die Hibernate-Configuration wird noch als Datei gelesen"
+			file="hibernate.cfg.xml" 
+			todir="${run.test.dir}" />
+		<!-- vorbereitete Testdaten bereitstellen -->
+		<delete dir="${run.test.dir}/db"/>
+		<mkdir dir="${run.test.dir}/db"/>
+		<copy todir="${run.test.dir}/db">
+			<fileset dir="testdb">
+				<include name="JLKDB.properties"/>
+				<include name="JLKDB.script"/>
+			</fileset>
+		</copy>
+		
 		<copy file="${src.test.dir}/testlog4j.properties" 
 			tofile="${build.test.dir}/log4j.properties" />
-		<junit >
+		<junit 
+			fork="true"
+			dir="${run.test.dir}">
 			<classpath>
 				<pathelement location="${build.test.dir}" />
 				<path refid="buildtest.path" />
