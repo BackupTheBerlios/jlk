@@ -18,9 +18,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Suchergebnis.hbm.xml,v 1.2 2009/03/22 14:14:02 ma08 Exp $
+   $Id: Suchergebnis.hbm.xml,v 1.3 2009/08/14 23:32:44 sgrossnw Exp $
     -->
 <hibernate-mapping package="de.evjnw.jlk.data">
+<!-- TODO: ist das hier wirklich eine persistente Klasse mit Hibernate-Mapping? -->
   <class name="Suchergebnis">
    
     <id name="id">
