@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: DaoFactoryImpl.java,v 1.7 2009/08/14 20:26:57 sgrossnw Exp $
+   $Id: DaoFactoryImpl.java,v 1.8 2009/08/14 23:43:15 sgrossnw Exp $
  */
 package de.evjnw.jlk.work.impl;
 
@@ -26,6 +26,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.log4j.Logger;
+import org.hibernate.LazyInitializationException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
@@ -49,8 +51,19 @@ import de.evjnw.jlk.work.dao.SucheDao;
  */
 public class DaoFactoryImpl implements DaoFactory {
 
+	/** Der Logger. */
+	private static final Logger LOG = Logger.getLogger(BenutzerDaoImplTest.class);
+
+	/** 
+	 * Hierüber werden die Hibernate-Verbindungen bezogen.
+	 */
 	SessionFactory factory;
 
+	/**
+	 * Speichert, ob die DAO Factory initialisiert wurde.
+	 */
+	private boolean initialized = false;
+	
 	/**
 	 * Mit diesem Flag könnnen wir steuern, ob während der Entwicklungsphase
 	 * automatisch die Datenbank-Skripte erzeugt werden sollen.
@@ -65,9 +78,14 @@ public class DaoFactoryImpl implements DaoFactory {
 	 * Anhang DAO.
 	 */
 	private AnhangDaoImpl anhangDao;
-
+	/**
+	 * DAO für die Suche.
+	 */
 	private SucheDaoImpl sucheDao;
 
+	/**
+	 * DAO für Lieder.
+	 */
 	private LiedDaoImpl liedDao;
 
 	/**
@@ -79,6 +97,13 @@ public class DaoFactoryImpl implements DaoFactory {
 	 * 			wenn bei der Verarbeitung der Hibernate Configuration ein Fehler auftritt
 	 */
 	public DaoFactoryImpl(String user, String password) throws DaoConfigurationException {
+		// TODO: user und password merken?
+	}
+
+	/** 
+	 * Liest die Hibernate-Konfiguration ein und stellt die DB-Verbindung her.
+	 */
+	private void initializeFactory() {
 		// TODO: sollte eigentlich eine Ressource im Classpath sein
 		File f = new File("hibernate.cfg.xml");
 		Configuration configuration = new Configuration().configure(f);
@@ -135,19 +160,36 @@ public class DaoFactoryImpl implements DaoFactory {
 	 * @see de.evjnw.jlk.work.dao.DaoFactory#getBenutzerDao()
 	 */
 	public BenutzerDao getBenutzerDao() {
+		lazyInitialization();
 		return benutzerDao;
+	}
+
+	/** 
+	 * Führt eine späte Initialisierung der Datenbank (bei Bedarf) durch.
+	 * Hierüber wird es (später) möglich, eine neue Datenbank anzulegen
+	 * und die DB-Verbindung erst nach gestarteter Anwendung herzustellen.
+	 */
+	private synchronized void lazyInitialization() {
+		if (! initialized) {
+			LOG.info("lazy initialization of DAO factory");
+			initializeFactory();
+			initialized = true;
+		}
 	}
 
 	/**
 	 * @see de.evjnw.jlk.work.dao.DaoFactory#getAnhangDao()
 	 */
 	public AnhangDao getAnhangDao() {
+		lazyInitialization();
 		return anhangDao;
 	}
 	public SucheDao getSucheDao() {
+		lazyInitialization();
 		return sucheDao;
 	}
 	public LiedDao getLiedDao() {
+		lazyInitialization();
 		return liedDao;
 	}
 }
