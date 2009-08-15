@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Frame.java,v 1.5 2009/08/14 23:39:23 sgrossnw Exp $
+   $Id: Frame.java,v 1.6 2009/08/15 11:54:28 sgrossnw Exp $
  */
 package de.evjnw.jlk.ui;
 
@@ -22,12 +22,16 @@ import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Set;
 
 import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import org.apache.log4j.Logger;
 
 import de.evjnw.jlk.data.DataModell;
 import de.evjnw.jlk.work.Performer;
@@ -39,10 +43,12 @@ import de.evjnw.jlk.work.Visualizer;
  * {@link Performer} weiter.
  * @author Stephan
  */
-public class Frame implements Visualizer {
+public class Frame implements Visualizer, ActionListener {
 
+	private static final Logger LOG = Logger.getLogger(Frame.class);
+	
 	/**
-	 * 
+	 * Der Titel des Anwendungsfensters.
 	 */
 	private static final String FRAME_TITLE = "JLK";
 
@@ -129,9 +135,11 @@ public class Frame implements Visualizer {
 		gbc.fill = GridBagConstraints.VERTICAL;
 		contentPane.add(Box.createVerticalStrut(300), gbc);
 
+		
+		
 		// TODO: selben Handler wie bei Datei > Beenden, ggf. abfragen
 		appFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		appFrame.setJMenuBar(new FrameMenu());
+		appFrame.setJMenuBar(new FrameMenu(this));
 	}
 
 	/**
@@ -169,4 +177,20 @@ public class Frame implements Visualizer {
 		// TODO Auto-generated method stub
 		
 	}	
+
+	/**
+	 * Horcht auf die Aktivierung der Men&uuml;eintr&auml;ge.
+	 * 
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
+	public void actionPerformed(ActionEvent e) {
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("Menu Item selected!; "
+			/* "ID:"+e.getID()+ */
+			+ ", Command:" + e.getActionCommand()
+			/* +", Source:"+e.getSource() */
+			);
+
+		}
+	}
 }
