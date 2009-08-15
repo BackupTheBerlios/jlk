@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: DaoFactoryImpl.java,v 1.8 2009/08/14 23:43:15 sgrossnw Exp $
+   $Id: DaoFactoryImpl.java,v 1.9 2009/08/15 11:42:46 sgrossnw Exp $
  */
 package de.evjnw.jlk.work.impl;
 
@@ -52,7 +52,7 @@ import de.evjnw.jlk.work.dao.SucheDao;
 public class DaoFactoryImpl implements DaoFactory {
 
 	/** Der Logger. */
-	private static final Logger LOG = Logger.getLogger(BenutzerDaoImplTest.class);
+	private static final Logger LOG = Logger.getLogger(DaoFactoryImpl.class);
 
 	/** 
 	 * Hierüber werden die Hibernate-Verbindungen bezogen.
