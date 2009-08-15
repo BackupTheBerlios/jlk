@@ -20,7 +20,7 @@
     <!-- 
     <property name="connection.url">jdbc:h2:file:db/JLKDB</property>
     -->
-   <property name="connection.url"> jdbc:hsqldb:file:db/JLKDB</property>
+   <property name="connection.url">jdbc:hsqldb:file:db/JLKDB</property>
   
 	<mapping resource="de/evjnw/jlk/data/Anhang.hbm.xml" /> 
 	<mapping resource="de/evjnw/jlk/data/Benutzer.hbm.xml" />
@@ -29,7 +29,9 @@
 	<mapping resource="de/evjnw/jlk/data/Material.hbm.xml" />
 	<mapping resource="de/evjnw/jlk/data/Synchronisation.hbm.xml" />
 	<mapping resource="de/evjnw/jlk/data/Suche.hbm.xml" />
+	<!-- 
 	<mapping resource="de/evjnw/jlk/data/Suchergebnis.hbm.xml" />
+	 -->
 	<mapping resource="de/evjnw/jlk/data/Verknuepfung.hbm.xml" />
 	<mapping resource="de/evjnw/jlk/data/Zusammenstellung.hbm.xml" />
 	<!--  TODO: diese Listener haben wir noch nicht in der Codebase
