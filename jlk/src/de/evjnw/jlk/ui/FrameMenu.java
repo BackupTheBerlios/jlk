@@ -14,9 +14,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: FrameMenu.java,v 1.2 2008/12/16 15:57:39 ma08 Exp $
+   $Id: FrameMenu.java,v 1.3 2009/08/15 11:55:33 sgrossnw Exp $
  */
 package de.evjnw.jlk.ui;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,7 +37,7 @@ public class FrameMenu extends JMenuBar {
 
 	private static final String SEP = "<<>>";
 	
-	private static Logger log = Logger.getLogger(FrameMenu.class);
+	static final Logger LOG = Logger.getLogger(FrameMenu.class);
 	
 	private JMenu fileMenu = new JMenu("Datei");
 	private JMenu editMenu= new JMenu("Bearbeiten");
@@ -44,21 +45,29 @@ public class FrameMenu extends JMenuBar {
 	private JMenu helpMenu = new JMenu("Hilfe");
 
 	/**
-	 * Im ctor werden die Unterelemente aufgebaut. 
+	 * Im ctor werden die Unterelemente aufgebaut.
+	 * @deprecated über diesen ctor stoßen die Menüeinträge keine Aktionen an 
 	 */
 	public FrameMenu() {
-		MenuDebugListener cl = new MenuDebugListener();
+		this(new MenuDebugListener());
+	}
+	
+	/**
+	 * Im ctor werden die Unterelemente aufgebaut. 
+	 * @param menuLister wird für die Menü-Einträge registriert
+	 */
+	public FrameMenu(ActionListener menuListener) {
 		String[] fileItems = new String[] { "Neu", SEP, "DB verbinden",
 				"DB trennen", SEP, "Exportieren", "Synchronisieren", SEP,
 				"Beenden" };
-		addItemsToMenu(cl, fileItems, fileMenu);
+		addItemsToMenu(menuListener, fileItems, fileMenu);
 		String[] editItems = new String[] { "Ausschneiden", "Kopieren",
 				"Einf\u00fcgen", "L\u00f6schen" };
-		addItemsToMenu(cl, editItems, editMenu);
+		addItemsToMenu(menuListener, editItems, editMenu);
 		String[] extraItems = new String[] { "Suchen", SEP, "Einstellungen" };
-		addItemsToMenu(cl, extraItems, extraMenu);
+		addItemsToMenu(menuListener, extraItems, extraMenu);
 		String[] helpItems = new String[] { "Info" };
-		addItemsToMenu(cl, helpItems, helpMenu);
+		addItemsToMenu(menuListener, helpItems, helpMenu);
 
 		add(fileMenu);
 		add(editMenu);
@@ -71,11 +80,11 @@ public class FrameMenu extends JMenuBar {
 	 * TODO: Die Eintr&auml;ge sind zun&auml;chst nur Platzhalter. 
 	 * Wenn die aufgerufenen Aktionen implementiert sind, wird 
 	 * das Menue anders aufgebaut. 
-	 * @param cl
+	 * @param listener wird über die Auswahl in den Menüs benachrichtigt
 	 * @param fileItems
 	 * @param menu
 	 */
-	private void addItemsToMenu(MenuDebugListener cl, String[] fileItems, JMenu menu) {
+	private void addItemsToMenu(ActionListener listener, String[] fileItems, JMenu menu) {
 		int idx = 0; // Index der Menue-Eintraege, fuer Separatoren
 		for (String item : fileItems) {
 			if (SEP.equals(item)) {
@@ -83,7 +92,7 @@ public class FrameMenu extends JMenuBar {
 				continue;
 			}
 			JMenuItem menuItem = new JMenuItem(item);
-			menuItem.addActionListener(cl);
+			menuItem.addActionListener(listener);
 			menu.add(menuItem);
 			idx++;
 		}
@@ -93,20 +102,21 @@ public class FrameMenu extends JMenuBar {
 	 * Horcht auf die Aktivierung der Men&uuml;eintr&auml;ge.
 	 * Demo-Implementierung zum Debuggen. 
 	 */
-	private class MenuDebugListener implements ActionListener {
-
+	private static class MenuDebugListener implements ActionListener {
+	
 		/**
 		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 		 */
 		public void actionPerformed(ActionEvent e) {
-			if (log.isDebugEnabled()) {
-				log.debug("Menu Item selected!; "
+			if (FrameMenu.LOG.isDebugEnabled()) {
+				FrameMenu.LOG.debug("Menu Item selected!; "
 				/* "ID:"+e.getID()+ */
 				+ ", Command:" + e.getActionCommand()
 				/* +", Source:"+e.getSource() */
 				);
-
+	
 			}
 		}
 	}
+
 }
