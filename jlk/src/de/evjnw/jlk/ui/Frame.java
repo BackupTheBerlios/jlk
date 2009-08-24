@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Frame.java,v 1.6 2009/08/15 11:54:28 sgrossnw Exp $
+   $Id: Frame.java,v 1.7 2009/08/24 20:18:43 sgrossnw Exp $
  */
 package de.evjnw.jlk.ui;
 
@@ -172,7 +172,7 @@ public class Frame implements Visualizer, ActionListener {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
+	/** {@inheritDoc} */
 	public void display(String view, List<DataModell> models, List<Object> data) {
 		// TODO Auto-generated method stub
 		

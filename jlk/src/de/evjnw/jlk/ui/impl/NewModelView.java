@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: NewModelView.java,v 1.1 2009/08/15 11:38:31 sgrossnw Exp $
+   $Id: NewModelView.java,v 1.2 2009/08/24 20:17:38 sgrossnw Exp $
  */
 package de.evjnw.jlk.ui.impl;
 
@@ -39,13 +39,13 @@ public class NewModelView implements View {
 	private JPanel actionPane;
 	private JPanel detailPane;
 	
-	@Override
+	/** {@inheritDoc} */
 	public void display(String verb, List<DataModell> models, List<Object> data) {
 		// TODO Auto-generated method stub
 		this.LOG.info("Verb:"+verb);
 	}
 
-	@Override
+	/** {@inheritDoc} */
 	public void init(JPanel actionPane, JPanel detailPane) {
 		this.actionPane = actionPane;
 		this.detailPane = detailPane;
