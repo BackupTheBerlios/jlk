@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: DaoConfigurationException.java,v 1.1 2009/08/14 20:26:15 sgrossnw Exp $
+   $Id: DaoConfigurationException.java,v 1.2 2009/09/04 21:12:17 sgrossnw Exp $
  */
 
 package de.evjnw.jlk.work.dao;
@@ -24,6 +24,11 @@ package de.evjnw.jlk.work.dao;
  * @author Stephan Groﬂ
  */
 public class DaoConfigurationException extends RuntimeException {
+
+	/**
+	 * Wird von der Serialisierung zur Unterscheidung inkompatibler Versionen der Klasse verwendet.
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Dieser Ctor ist wenig hilfreich.
