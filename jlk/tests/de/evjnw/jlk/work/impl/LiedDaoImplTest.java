@@ -2,17 +2,14 @@ package de.evjnw.jlk.work.impl;
 
 import java.util.List;
 
+import junit.framework.TestCase;
+
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import de.evjnw.jlk.data.Anhang;
 import de.evjnw.jlk.data.Lied;
 import de.evjnw.jlk.data.Material;
-
 import de.evjnw.jlk.work.dao.LiedDao;
-import junit.framework.TestCase;
 
 public class LiedDaoImplTest extends TestCase {
 
@@ -21,20 +18,15 @@ public class LiedDaoImplTest extends TestCase {
 
 	/** zu testende Komponente. */
 	private LiedDao component;
-	SessionFactory sf;
+	DaoFactoryImpl factory;
 
 	protected void setUp() throws Exception {
-		DaoFactoryImpl factory = new DaoFactoryImpl("sa", "");
+		factory = new DaoFactoryImpl("sa", "");
 		component = factory.getLiedDao();
-		sf = factory.factory;
 	}
 
 	protected void tearDown() {
-		Session sess = sf.getCurrentSession();
-		Transaction t = sess.beginTransaction();
-		sess.createSQLQuery("SHUTDOWN").executeUpdate();
-		t.commit();
-
+		factory.close();
 	}
 
 	@SuppressWarnings("unchecked")

@@ -1,6 +1,6 @@
 /* 
    JLK - Java Lieder Katalog
-   Copyright 2008, Stephan Gross
+   Copyright 2008-2009, Stephan Gross
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -14,21 +14,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: BenutzerDaoImplTest.java,v 1.7 2009/08/14 20:52:15 sgrossnw Exp $
+   $Id: BenutzerDaoImplTest.java,v 1.8 2009/09/04 21:29:08 sgrossnw Exp $
  */
 package de.evjnw.jlk.work.impl;
 
 import java.util.List;
 
+import junit.framework.TestCase;
+
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import de.evjnw.jlk.data.Benutzer;
 import de.evjnw.jlk.data.Favoriten;
 import de.evjnw.jlk.work.dao.BenutzerDao;
-import junit.framework.TestCase;
 
 /**
  * @author Stephan
@@ -39,24 +38,22 @@ public class BenutzerDaoImplTest extends TestCase {
 	private static final Logger log = Logger.getLogger(BenutzerDaoImplTest.class);
 	
 	/** zu testende Komponente. */
-	private BenutzerDao component; 
+	private BenutzerDao component;
+	/** vielleicht entbehrlich */
 	SessionFactory sf;
+	DaoFactoryImpl factory;
 	
 	/**
 	 * @see junit.framework.TestCase#setUp()
 	 */
 	protected void setUp() throws Exception {
-		DaoFactoryImpl factory = new DaoFactoryImpl("sa", "");
+		factory = new DaoFactoryImpl("sa", "");
 		component = factory.getBenutzerDao();
 		sf = factory.factory;
 	}
 	
 	protected void tearDown() {
-		Session sess = sf.getCurrentSession();
-		Transaction t = sess.beginTransaction();
-		sess.createSQLQuery("SHUTDOWN").executeUpdate();
-		t.commit();
-//		sess.close();
+		factory.close();
 	}
 
 	/**
