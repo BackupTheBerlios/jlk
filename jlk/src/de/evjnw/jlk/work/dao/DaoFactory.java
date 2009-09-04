@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: DaoFactory.java,v 1.2 2009/04/04 18:01:53 ma08 Exp $
+   $Id: DaoFactory.java,v 1.3 2009/09/04 21:13:17 sgrossnw Exp $
  */
 package de.evjnw.jlk.work.dao;
 
@@ -26,11 +26,17 @@ package de.evjnw.jlk.work.dao;
 public interface DaoFactory {
 	
 	/**
-	 * @return das {@link Benutzer} DAO.
+	 * @return das {@link de.evjnw.jlk.data.Benutzer} DAO.
 	 */
 	public BenutzerDao getBenutzerDao();
+
 	/**
-	 * @return das {@link Benutzer} DAO.
+	 * @return das {@link de.evjnw.jlk.data.Benutzer} DAO.
 	 */
 	public AnhangDao getAnhangDao();
+
+	/**
+	 * @return das {@link de.evjnw.jlk.data.Lied} DAO.
+	 */
+	public LiedDao getLiedDao();
 }
