@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Verknuepfung.java,v 1.3 2009/03/22 14:14:02 ma08 Exp $
+   $Id: Verknuepfung.java,v 1.4 2009/09/04 21:18:15 sgrossnw Exp $
  */
 package de.evjnw.jlk.data;
 /**
@@ -57,33 +57,37 @@ public void setLied2(Lied lied2) {
 
 /**
  * Lied 2
-*/
+ */
 private Lied lied2;
-/**
- * @param ich 
- * @param Return 
- * @return 
-*/
+
+	/** Default Constructor. */
+	public Verknuepfung() {
+	}
 
 /**
- * @param Lied1 - das eine Lied
- * @param Lied2 - und das andere zu verknüpfende Lied
+ * @param lied1 - das eine Lied
+ * @param lied2 - und das andere zu verknüpfende Lied
  * @param durch - Der Benutzer
  */
-public Verknuepfung(Lied Lied1,Lied Lied2,String durch){
+public Verknuepfung(Lied lied1, Lied lied2, String durch) {
 	super(durch);
-	this.lied1=Lied1;
-	this.lied2=Lied2;
+	this.lied1=lied1;
+	this.lied2=lied2;
 }
-
+/**
+ * Ausgehend von einem {@link Lied} (ich) wird über die {@link Verknuepfung} zu dem anderen, 
+ * verknüpften Lied navigiert.
+ * @param ich eines der verknüpften Lieder
+ * @return das andere Lied aus dieser Verknüpfung, <code>null</code> wenn <em>ich</em> 
+ *   nicht Bestandteil der Verknüpfung ist
+ */
 public Lied anderesLied(Lied ich) {
-	if(ich.equals(lied1)){
+	if (ich.equals(lied1)){
 		return lied2;
     }
-	else if(ich.equals(lied2)){
+	else if (ich.equals(lied2)){
 		return lied1;
 	}
-		return null;
+	return null;
 }
 }
-
