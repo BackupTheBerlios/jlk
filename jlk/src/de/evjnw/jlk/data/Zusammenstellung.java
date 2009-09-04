@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Zusammenstellung.java,v 1.3 2008/12/09 09:26:11 ma08 Exp $
+   $Id: Zusammenstellung.java,v 1.4 2009/09/04 21:18:42 sgrossnw Exp $
  */
 
 package de.evjnw.jlk.data;
@@ -41,11 +41,15 @@ private List<Lied> lieder;
 */
 private List<Anhang> anhang;
 
-public Zusammenstellung(String durch, String Titel, List<Lied> Lieder){
+	/** Default Constructor. */
+	public Zusammenstellung() {
+	}
+
+
+public Zusammenstellung(String durch, String titel, List<Lied> lieder){
 	super(durch);
-	this.setTitel(Titel);
-	this.setLieder(Lieder);
-	
+	this.setTitel(titel);
+	this.setLieder(lieder);
 }
 
 /**
