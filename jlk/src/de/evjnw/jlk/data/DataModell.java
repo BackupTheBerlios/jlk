@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: DataModell.java,v 1.4 2008/12/15 22:15:51 ma08 Exp $
+   $Id: DataModell.java,v 1.5 2009/09/04 21:15:57 sgrossnw Exp $
  */
 package de.evjnw.jlk.data;
 import java.util.Date;
@@ -22,7 +22,7 @@ import java.util.Date;
  * Die SuperKlasse, die Attribute zur Verfügung stellt, die alle brauchen.
  * @author Mario Aldag
 */
-public abstract class DataModell{
+public abstract class DataModell {
 /**
  * Id für die Datenbank
 */
@@ -50,6 +50,9 @@ public DataModell(String durch){
 	this.setHinzugefuegtDurch(durch);
 	
 }
+/**
+ * Default Konstruktor.
+ */
 public DataModell(){
 	
 }
