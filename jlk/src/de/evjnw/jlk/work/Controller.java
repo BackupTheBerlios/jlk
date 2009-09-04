@@ -1,6 +1,6 @@
 /* 
    JLK - Java Lieder Katalog
-   Copyright 2008, Stephan Gross
+   Copyright 2008-2009, Stephan Gross
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -14,13 +14,14 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Controller.java,v 1.2 2009/01/05 11:42:43 sgrossnw Exp $
+   $Id: Controller.java,v 1.3 2009/09/04 21:11:35 sgrossnw Exp $
  */
 package de.evjnw.jlk.work;
 
 import org.apache.log4j.Logger;
 
 import de.evjnw.jlk.work.dao.DaoFactory;
+import de.evjnw.jlk.work.impl.DaoFactoryImpl;
 
 /**
  * Diese Klasse ist die Steuerzentrale der Anwendung. 
@@ -63,7 +64,14 @@ public class Controller implements Performer {
 			throw new IllegalArgumentException("command must not be null");
 		}
 		// TODO tu was
-		log.info("verb:"+command.getVerb());
+		if (log.isInfoEnabled()) {
+			log.info("verb:"+command.getVerb());
+		}
+		if ("quit".equals(command.getVerb())) {
+			QuitAction action = new QuitAction();
+			action.setHandle((DaoFactoryImpl)daoFactory);
+			action.perform(command);
+		}
 	}
 
 	/**
