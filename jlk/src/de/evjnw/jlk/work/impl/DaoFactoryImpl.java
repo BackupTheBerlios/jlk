@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: DaoFactoryImpl.java,v 1.9 2009/08/15 11:42:46 sgrossnw Exp $
+   $Id: DaoFactoryImpl.java,v 1.10 2009/09/04 21:14:25 sgrossnw Exp $
  */
 package de.evjnw.jlk.work.impl;
 
@@ -27,17 +27,22 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.log4j.Logger;
+import org.hibernate.HibernateException;
 import org.hibernate.LazyInitializationException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.w3c.dom.Document;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.SAXException;
 
+import de.evjnw.jlk.work.DatabaseHandle;
 import de.evjnw.jlk.work.dao.AnhangDao;
 import de.evjnw.jlk.work.dao.BenutzerDao;
 import de.evjnw.jlk.work.dao.DaoConfigurationException;
+import de.evjnw.jlk.work.dao.DaoException;
 import de.evjnw.jlk.work.dao.DaoFactory;
 import de.evjnw.jlk.work.dao.LiedDao;
 import de.evjnw.jlk.work.dao.SucheDao;
@@ -46,10 +51,13 @@ import de.evjnw.jlk.work.dao.SucheDao;
  * Diese Klasse bietet die Hibernate-basierte Implementierung der
  * {@link DaoFactory}. Sie implementiert auch das <em>Factory Pattern</em> und
  * hilft so bei der Strukturierung der Applikation.
+ * Das {@link DatabaseHandle} wird vorerst hier implementiert, könnte jedoch 
+ * von einer eigenen Klasse übernommen werden, die dann fertig initialisierte
+ * {@link DaoFactoryImpl} Instanzen zurückgibt (TODO: umschalten zwischen DB).
  * 
  * @author Stephan
  */
-public class DaoFactoryImpl implements DaoFactory {
+public class DaoFactoryImpl implements DaoFactory, DatabaseHandle {
 
 	/** Der Logger. */
 	private static final Logger LOG = Logger.getLogger(DaoFactoryImpl.class);
@@ -132,7 +140,7 @@ public class DaoFactoryImpl implements DaoFactory {
 //		Configuration configuration = new Configuration().configure(d);
 		
 		// TODO: Benutzer und Passwort in der Configuration ersetzen
-
+		
 		// configuration.setInterceptor(new LastModifiedInterceptor());
 
 		if (exportSchemaForTests) {
@@ -191,5 +199,32 @@ public class DaoFactoryImpl implements DaoFactory {
 	public LiedDao getLiedDao() {
 		lazyInitialization();
 		return liedDao;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void close() {
+		LOG.info("close");
+		try {
+			synchronized (this) {
+				if (initialized) {
+					Session sess = factory.getCurrentSession();
+					Transaction t = sess.beginTransaction();
+					sess.createSQLQuery("SHUTDOWN").executeUpdate();
+					t.commit();
+					// sess.close();
+					initialized = false;
+					factory = null;
+				} else {
+					LOG.info("not initialized yet");
+				}
+			}
+		} catch (HibernateException he) {
+			throw new DaoException(
+					"konnte kein SHUTDOWN an die HsqlDB absetzen:"
+							+ he.getMessage(), he);
+		}
 	}
 }
