@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- ====================================================================== 
-   Copyright 2008, Stephan Gross
+   Copyright 2008-2009, Stephan Gross
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-     $Id: build.xml,v 1.8 2009/08/14 22:05:36 sgrossnw Exp $
+     $Id: build.xml,v 1.9 2009/09/04 21:03:04 sgrossnw Exp $
 
      JLK
      Java Lieder Katalog
