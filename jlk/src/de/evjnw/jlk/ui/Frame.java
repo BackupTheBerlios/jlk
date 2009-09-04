@@ -1,6 +1,6 @@
 /* 
    JLK - Java Lieder Katalog
-   Copyright 2008, Stephan Gross
+   Copyright 2008-2009, Stephan Gross
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Frame.java,v 1.7 2009/08/24 20:18:43 sgrossnw Exp $
+   $Id: Frame.java,v 1.8 2009/09/04 21:20:57 sgrossnw Exp $
  */
 package de.evjnw.jlk.ui;
 
@@ -24,6 +24,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import java.util.Set;
 
@@ -35,6 +37,7 @@ import org.apache.log4j.Logger;
 
 import de.evjnw.jlk.data.DataModell;
 import de.evjnw.jlk.work.Performer;
+import de.evjnw.jlk.work.UiCommand;
 import de.evjnw.jlk.work.Visualizer;
 
 /**
@@ -46,11 +49,24 @@ import de.evjnw.jlk.work.Visualizer;
 public class Frame implements Visualizer, ActionListener {
 
 	private static final Logger LOG = Logger.getLogger(Frame.class);
-	
+		
 	/**
 	 * Der Titel des Anwendungsfensters.
 	 */
 	private static final String FRAME_TITLE = "JLK";
+
+	/**
+	 * Dieser Listener horcht auf die Events des Hauptfensters (appFrame).
+	 */
+	private class FrameListener extends WindowAdapter {
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void windowClosing(WindowEvent e) {
+			userWantsToQuit();
+		}
+	}
 
 	/** 
 	 * die Ausf&uuml;hrung der Logik wird an diese Klasse delegiert.
@@ -138,7 +154,8 @@ public class Frame implements Visualizer, ActionListener {
 		
 		
 		// TODO: selben Handler wie bei Datei > Beenden, ggf. abfragen
-		appFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		appFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		appFrame.addWindowListener(new FrameListener());
 		appFrame.setJMenuBar(new FrameMenu(this));
 	}
 
@@ -190,7 +207,32 @@ public class Frame implements Visualizer, ActionListener {
 			+ ", Command:" + e.getActionCommand()
 			/* +", Source:"+e.getSource() */
 			);
-
+		}
+		try {
+			if ("Beenden".equals(e.getActionCommand())) {
+				userWantsToQuit();
+			}
+			// TODO: die anderen Menü-Einträge 
+			
+		} catch (RuntimeException re) {
+			LOG.error(re.getMessage(), re);
 		}
 	}
+
+	/**
+	 * Diese Methode bündelt die Aktionen wenn der Benutzer die Anwendung beenden will.
+	 */
+	private void userWantsToQuit() {
+		LOG.info("AppFrame is closing");
+		// TODO ermitteln, ob AppFrame das letzte angezeigte Fenster ist
+		// TODO ermitteln, ob lang laufende Hintergrundaktion läuft
+		// TODO ermitteln, ob Eingaben verloren gehen können
+		// TODO Sicherheitsabfrage
+		UiCommand command = new UiCommand();
+		command.setVerb("quit");
+		getPerformer().perform(command);
+		appFrame.setVisible(false);
+		appFrame.dispose();
+	}
+
 }
