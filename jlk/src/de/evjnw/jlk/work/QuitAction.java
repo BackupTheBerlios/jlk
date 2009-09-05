@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: QuitAction.java,v 1.1 2009/09/04 21:06:53 sgrossnw Exp $
+   $Id: QuitAction.java,v 1.2 2009/09/05 10:31:38 sgrossnw Exp $
  */
 package de.evjnw.jlk.work;
 
@@ -34,7 +34,9 @@ public class QuitAction implements Performer {
 	/** bietet die Kontrolle über die Datenbank. */
 	private DatabaseHandle handle;
 	
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void perform(UiCommand command) {
 		try {
 			handle.close();

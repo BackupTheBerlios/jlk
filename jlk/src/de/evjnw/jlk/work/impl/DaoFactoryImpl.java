@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: DaoFactoryImpl.java,v 1.10 2009/09/04 21:14:25 sgrossnw Exp $
+   $Id: DaoFactoryImpl.java,v 1.11 2009/09/05 10:31:55 sgrossnw Exp $
  */
 package de.evjnw.jlk.work.impl;
 
@@ -204,7 +204,6 @@ public class DaoFactoryImpl implements DaoFactory, DatabaseHandle {
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public void close() {
 		LOG.info("close");
 		try {
