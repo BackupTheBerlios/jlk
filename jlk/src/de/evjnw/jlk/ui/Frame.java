@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Frame.java,v 1.8 2009/09/04 21:20:57 sgrossnw Exp $
+   $Id: Frame.java,v 1.9 2009/09/19 13:45:07 sgrossnw Exp $
  */
 package de.evjnw.jlk.ui;
 
@@ -31,6 +31,7 @@ import java.util.Set;
 
 import javax.swing.Box;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import org.apache.log4j.Logger;
@@ -39,6 +40,8 @@ import de.evjnw.jlk.data.DataModell;
 import de.evjnw.jlk.work.Performer;
 import de.evjnw.jlk.work.UiCommand;
 import de.evjnw.jlk.work.Visualizer;
+import de.evjnw.jlk.work.Visualizer.InfoType;
+import de.evjnw.jlk.work.dao.DaoException;
 
 /**
  * Diese Klasse steuert die Oberfl&auml;che der Anwendung.
@@ -151,9 +154,7 @@ public class Frame implements Visualizer, ActionListener {
 		gbc.fill = GridBagConstraints.VERTICAL;
 		contentPane.add(Box.createVerticalStrut(300), gbc);
 
-		
-		
-		// TODO: selben Handler wie bei Datei > Beenden, ggf. abfragen
+		// verwendet denselben Handler wie bei Datei > Beenden, ggf. abfragen
 		appFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		appFrame.addWindowListener(new FrameListener());
 		appFrame.setJMenuBar(new FrameMenu(this));
@@ -178,15 +179,55 @@ public class Frame implements Visualizer, ActionListener {
 	 */
 	public UserChoice askUser(String title, String message,
 			Set<UserChoice> choices) {
-		// TODO Auto-generated method stub
-		return null;
+		if (choices.size() == 0) {
+			LOG.error("askUser was called without choices");
+			return null;
+		}
+		UserChoice result = null;
+		if (choices.size() == 1) {
+			if (choices.contains(UserChoice.OK)) {
+				JOptionPane.showMessageDialog(appFrame, message, title, JOptionPane.QUESTION_MESSAGE);
+				result = UserChoice.OK;
+			} else {
+				// TODO: alternativen Button-Text bestimmen
+			}
+			// TODO: confirmation dialog
+		}
+		if (choices.size() == 2) {
+			// TODO: Yes/No dialog
+		}
+		if (choices.size() == 3) {
+			// TODO: Yes/No/Cancel dialog
+		}
+		if (choices.size() > 3) {
+			LOG.error("askUser was called with more than 3 options");
+			// könnte per JDialog-Subklasse aufwändig implementiert werden, bleibt jetzt offen
+			result = null;
+		}
+		return result;
 	}
 
 	/**
 	 * @see de.evjnw.jlk.work.Visualizer#presentInformation(java.lang.String, java.lang.String, de.evjnw.jlk.work.Visualizer.InfoType)
 	 */
 	public void presentInformation(String title, String message, InfoType type) {
-		// TODO Auto-generated method stub
+		int messageType;
+		switch (type) {
+		case INFORMATION:
+			messageType = JOptionPane.INFORMATION_MESSAGE;
+			break;
+		case WARNING:
+			messageType = JOptionPane.WARNING_MESSAGE;
+			break;
+		case ERROR:
+			messageType = JOptionPane.ERROR_MESSAGE;
+			break;
+		default:
+			// der Parameter type kann keinen anderen Wert annehmen
+			messageType = JOptionPane.ERROR_MESSAGE;
+			break;
+		}
+		JOptionPane.showMessageDialog(appFrame, message, title, messageType);
 	}
 
 	/** {@inheritDoc} */
@@ -212,10 +253,17 @@ public class Frame implements Visualizer, ActionListener {
 			if ("Beenden".equals(e.getActionCommand())) {
 				userWantsToQuit();
 			}
+			if ("Info".equals(e.getActionCommand())) {
+				presentInformation("Info", "JLK - Java Liede Katalog\nvon Mario Aldag und Stephan Groß\nhttp://developer.berlios.de/projects/jlk/\ndie Nutzung der Software unterliegt der Apache License v2.0", InfoType.INFORMATION);
+			}
+//			if ("Neu".equals(e.getActionCommand())) {
+//				throw new DaoException("es gibt noch keine Implementierung für neue Datensätze");
+//			}
 			// TODO: die anderen Menü-Einträge 
 			
 		} catch (RuntimeException re) {
 			LOG.error(re.getMessage(), re);
+			presentInformation("Interner Fehler", "Bei der Verarbeitung ist ein interner Fehler aufgetreten: "+re.getMessage(), InfoType.ERROR);
 		}
 	}
 
