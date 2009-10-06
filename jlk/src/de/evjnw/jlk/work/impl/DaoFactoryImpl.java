@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: DaoFactoryImpl.java,v 1.11 2009/09/05 10:31:55 sgrossnw Exp $
+   $Id: DaoFactoryImpl.java,v 1.12 2009/10/06 20:22:34 sgrossnw Exp $
  */
 package de.evjnw.jlk.work.impl;
 
@@ -106,19 +106,59 @@ public class DaoFactoryImpl implements DaoFactory, DatabaseHandle {
 	 */
 	public DaoFactoryImpl(String user, String password) throws DaoConfigurationException {
 		// TODO: user und password merken?
+		try {
+			// frühzeitig die Konfiguration laden und so Fehler bemerken
+			Configuration configuration = loadConfiguration();
+			if (exportSchemaForTests) {
+				SchemaExport export = new SchemaExport(configuration);
+				export.setOutputFile("create_jlk.sql");
+				boolean writeScript = true;
+				boolean executeDdl = true;
+				export.create(writeScript, executeDdl);
+			}
+		} catch (HibernateException he) {
+			throw new DaoConfigurationException(he.getMessage(), he);
+		}
 	}
 
 	/** 
 	 * Liest die Hibernate-Konfiguration ein und stellt die DB-Verbindung her.
 	 */
-	private void initializeFactory() {
+	private void initializeFactory() throws DaoConfigurationException {
+		try {
+			Configuration configuration = loadConfiguration();
+
+			// TODO: Benutzer und Passwort in der Configuration ersetzen
+
+			factory = configuration.buildSessionFactory();
+		} catch (HibernateException he) {
+			throw new DaoConfigurationException(he.getMessage(), he);
+		}
+
+		benutzerDao = new BenutzerDaoImpl();
+		anhangDao = new AnhangDaoImpl();
+		sucheDao = new SucheDaoImpl();
+		liedDao = new LiedDaoImpl();
+		benutzerDao.setFactory(factory);
+		anhangDao.setFactory(factory);
+		sucheDao.setFactory(factory);
+		liedDao.setFactory(factory);
+		// TODO: die anderen DAOs initialisieren
+	}
+
+	/**
+	 * Lädt die (Basis-)Hibernate-Konfiguration.
+	 * @return die Konfiguration ohne ersetzte User/Passwort/Datenbank-Lokation
+	 * @throws HibernateException wenn die Konfiguration einen Fehler enthält
+	 */
+	private Configuration loadConfiguration() throws HibernateException {
 		// TODO: sollte eigentlich eine Ressource im Classpath sein
 		File f = new File("hibernate.cfg.xml");
 		Configuration configuration = new Configuration().configure(f);
 
-		// funktioniert noch nicht, da der Parser versucht, die DTD (per HTTP) aufzulösen, 
-		// ich muss hier mit Unterstützung der API den Entity Resolver für einen lokalen
-		// Catalog konfigurieren
+// funktioniert noch nicht, da der Parser versucht, die DTD (per HTTP) aufzulösen, 
+// ich muss hier mit Unterstützung der API den Entity Resolver für einen lokalen
+// Catalog konfigurieren
 //		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 //		Document d = null;
 //		try {
@@ -138,30 +178,10 @@ public class DaoFactoryImpl implements DaoFactory, DatabaseHandle {
 //			throw new DaoConfigurationException("could not access the hibernate configuration:"+e.getMessage(), e);
 //		}
 //		Configuration configuration = new Configuration().configure(d);
-		
-		// TODO: Benutzer und Passwort in der Configuration ersetzen
-		
+
 		// configuration.setInterceptor(new LastModifiedInterceptor());
 
-		if (exportSchemaForTests) {
-			SchemaExport export = new SchemaExport(configuration);
-			export.setOutputFile("create_jlk.sql");
-			boolean writeScript = true;
-			boolean executeDdl = true;
-			export.create(writeScript, executeDdl);
-		}
-
-		factory = configuration.buildSessionFactory();
-
-		benutzerDao = new BenutzerDaoImpl();
-		anhangDao = new AnhangDaoImpl();
-		sucheDao = new SucheDaoImpl();
-		liedDao = new LiedDaoImpl();
-		benutzerDao.setFactory(factory);
-		anhangDao.setFactory(factory);
-		sucheDao.setFactory(factory);
-		liedDao.setFactory(factory);
-		// TODO: die anderen DAOs initialisieren
+		return configuration;
 	}
 
 	/**
