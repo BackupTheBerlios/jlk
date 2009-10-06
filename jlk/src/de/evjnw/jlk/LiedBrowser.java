@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: LiedBrowser.java,v 1.6 2009/09/19 13:45:31 sgrossnw Exp $
+   $Id: LiedBrowser.java,v 1.7 2009/10/06 20:31:45 sgrossnw Exp $
  */
 package de.evjnw.jlk;
 
@@ -23,6 +23,7 @@ import org.apache.log4j.Logger;
 import de.evjnw.jlk.ui.Frame;
 import de.evjnw.jlk.work.Controller;
 import de.evjnw.jlk.work.Visualizer.InfoType;
+import de.evjnw.jlk.work.dao.DaoConfigurationException;
 import de.evjnw.jlk.work.dao.DaoFactory;
 import de.evjnw.jlk.work.impl.DaoFactoryImpl;
 
@@ -45,8 +46,13 @@ public class LiedBrowser {
 	public static void main(String[] args) {
 		log.info("JLK Lied Browser startet");
 		LiedBrowser lb = new LiedBrowser();
-		lb.connectModules();
-		lb.presentUI();
+        try {
+			lb.connectModules();
+			lb.presentUI();
+        } catch (DaoConfigurationException dce) {
+        	lb.frame.presentInformation("Datenzugriffs-Fehler", "Die Konfiguration des Daten-Zugriffs enthält einen Fehler:\n"+dce.getMessage(), InfoType.ERROR);
+        	System.exit(-1);
+        }
 	}
 
 	/**
