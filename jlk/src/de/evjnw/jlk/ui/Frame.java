@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Frame.java,v 1.9 2009/09/19 13:45:07 sgrossnw Exp $
+   $Id: Frame.java,v 1.10 2009/10/06 20:29:44 sgrossnw Exp $
  */
 package de.evjnw.jlk.ui;
 
@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -175,7 +176,7 @@ public class Frame implements Visualizer, ActionListener {
 	}
 
 	/**
-	 * @see de.evjnw.jlk.work.Visualizer#askUser(java.lang.String, java.lang.String, java.util.Set)
+	 * {@inheritDoc}
 	 */
 	public UserChoice askUser(String title, String message,
 			Set<UserChoice> choices) {
@@ -191,13 +192,64 @@ public class Frame implements Visualizer, ActionListener {
 			} else {
 				// TODO: alternativen Button-Text bestimmen
 			}
-			// TODO: confirmation dialog
 		}
 		if (choices.size() == 2) {
-			// TODO: Yes/No dialog
+			if (choices.contains(UserChoice.YES)
+					&& choices.contains(UserChoice.NO)) {
+				int chosen = JOptionPane.showConfirmDialog(appFrame, message,
+						title, JOptionPane.YES_NO_OPTION);
+				switch (chosen) {
+				case JOptionPane.YES_OPTION:
+					result = UserChoice.YES;
+					break;
+				case JOptionPane.CLOSED_OPTION:
+					LOG.info("user has closed confirm(Y/N) dialog, assuming NO");
+				case JOptionPane.NO_OPTION:
+					result = UserChoice.NO;
+					break;
+				default:
+					LOG.error("confirm(Y/N) returned something else:" + chosen);
+				}
+			}
+			if (choices.contains(UserChoice.OK) && choices.contains(UserChoice.CANCEL)) {
+				int chosen = JOptionPane.showConfirmDialog(appFrame, message,
+						title, JOptionPane.OK_CANCEL_OPTION);
+				switch (chosen) {
+				case JOptionPane.OK_OPTION:
+					result = UserChoice.OK;
+					break;
+				case JOptionPane.CLOSED_OPTION:
+					LOG.info("user has closed confirm(OK/Cancel) dialog, assuming Cancel");
+				case JOptionPane.CANCEL_OPTION:
+					result = UserChoice.CANCEL;
+					break;
+				default:
+					LOG.error("confirm(OK/Cancel) returned something else:" + chosen);
+				}
+			}
+			// TODO: alternativen Button-Text bestimmen
 		}
 		if (choices.size() == 3) {
-			// TODO: Yes/No/Cancel dialog
+			if (choices.contains(UserChoice.YES) && choices.contains(UserChoice.NO) && choices.contains(UserChoice.CANCEL)) {
+				int chosen = JOptionPane.showConfirmDialog(appFrame, message,
+						title, JOptionPane.YES_NO_CANCEL_OPTION);
+				switch (chosen) {
+				case JOptionPane.YES_OPTION:
+					result = UserChoice.YES;
+					break;
+				case JOptionPane.NO_OPTION:
+					result = UserChoice.NO;
+					break;
+				case JOptionPane.CLOSED_OPTION:
+					LOG.info("user has closed confirm(Y/N/Cancel) dialog, assuming Cancel");
+				case JOptionPane.CANCEL_OPTION:
+					result = UserChoice.CANCEL;
+					break;
+				default:
+					LOG.error("confirm(Y/N/Cancel) returned something else:" + chosen);
+				}
+			}
+			// TODO: alternativen Button-Text bestimmen
 		}
 		if (choices.size() > 3) {
 			LOG.error("askUser was called with more than 3 options");
@@ -232,8 +284,13 @@ public class Frame implements Visualizer, ActionListener {
 
 	/** {@inheritDoc} */
 	public void display(String view, List<DataModell> models, List<Object> data) {
+		if ("new".equals(view)) {
+			throw new DaoException("es gibt noch keine Implementierung für neue Datensätze");
+		}
+		if ("edit".equals(view)) {
+			throw new DaoException("es gibt noch keine Implementierung für die Bearbeitung von Datensätzen");
+		}
 		// TODO Auto-generated method stub
-		
 	}	
 
 	/**
@@ -256,9 +313,10 @@ public class Frame implements Visualizer, ActionListener {
 			if ("Info".equals(e.getActionCommand())) {
 				presentInformation("Info", "JLK - Java Liede Katalog\nvon Mario Aldag und Stephan Groß\nhttp://developer.berlios.de/projects/jlk/\ndie Nutzung der Software unterliegt der Apache License v2.0", InfoType.INFORMATION);
 			}
-//			if ("Neu".equals(e.getActionCommand())) {
-//				throw new DaoException("es gibt noch keine Implementierung für neue Datensätze");
-//			}
+			if ("Neu".equals(e.getActionCommand())) {
+				LOG.info("Menu - Neu");
+				display("new", null, null);
+			}
 			// TODO: die anderen Menü-Einträge 
 			
 		} catch (RuntimeException re) {
@@ -276,6 +334,15 @@ public class Frame implements Visualizer, ActionListener {
 		// TODO ermitteln, ob lang laufende Hintergrundaktion läuft
 		// TODO ermitteln, ob Eingaben verloren gehen können
 		// TODO Sicherheitsabfrage
+		Set<UserChoice> choices = new HashSet<UserChoice>();
+		choices.add(UserChoice.YES);
+		choices.add(UserChoice.NO);
+		UserChoice chosen = askUser("Anwendung Beenden", "Nicht gespeicherte Änderungen gehen verloren.\nSoll die Anwendung jetzt beendet werden?", choices);
+		if (chosen == null || chosen == UserChoice.NO) {
+			LOG.info("Benutzer hat das Beenden abgebrochen");
+			// TODO: Statuszeile: Aktion abgebrochen
+			return;
+		}
 		UiCommand command = new UiCommand();
 		command.setVerb("quit");
 		getPerformer().perform(command);
