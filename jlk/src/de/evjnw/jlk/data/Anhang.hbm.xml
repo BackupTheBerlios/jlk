@@ -18,7 +18,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $$Id: Anhang.hbm.xml,v 1.2 2009/04/04 18:01:53 ma08 Exp $$
+   $$Id: Anhang.hbm.xml,v 1.3 2009/10/06 20:32:39 sgrossnw Exp $$
     -->
 <hibernate-mapping package="de.evjnw.jlk.data">
   <class name="Anhang">
@@ -32,6 +32,8 @@
     <property name="geaendertAm" type="date"/>
 <!-- Ende Attribute der abstrakten Basisklasse -->
 	<many-to-one name="material" column="material"/>
+	<!-- TODO: ein Anhang kann doch wohl in mehreren Zusammenstellungen verwendet werden, 
+	  dann muss hier ein n:m Mapping rein (s. Hibernate Reference 1.3.2) -->
 	<many-to-one name="zusammenstellung" column="zusammenstellung"/>
 	<property name="titel" />
 	<property name="beschreibung"/>
