@@ -1,6 +1,6 @@
 /* 
    JLK - Java Lieder Katalog
-   Copyright 2008, Stephan Gross
+   Copyright 2009, Stephan Gross
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: View.java,v 1.1 2009/08/15 11:35:09 sgrossnw Exp $
+   $Id: View.java,v 1.2 2009/10/06 20:33:03 sgrossnw Exp $
  */
 package de.evjnw.jlk.ui;
 
