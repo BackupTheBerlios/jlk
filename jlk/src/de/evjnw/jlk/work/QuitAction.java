@@ -14,22 +14,17 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: QuitAction.java,v 1.2 2009/09/05 10:31:38 sgrossnw Exp $
+   $Id: QuitAction.java,v 1.3 2009/10/06 20:25:19 sgrossnw Exp $
  */
 package de.evjnw.jlk.work;
-
-import org.apache.log4j.Logger;
 
 import de.evjnw.jlk.work.dao.DaoException;
 
 /**
  * Diese Aktion bündelt die Aufräum-Aktivitäten am Ende der Anwendung.
  * @author Stephan Groß
- *
  */
 public class QuitAction implements Performer {
-
-	private static Logger log = Logger.getLogger(QuitAction.class);
 
 	/** bietet die Kontrolle über die Datenbank. */
 	private DatabaseHandle handle;
@@ -37,11 +32,17 @@ public class QuitAction implements Performer {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void perform(UiCommand command) {
+	public void perform(UiCommand command) throws DaoException {
+		DaoException caught = null;
 		try {
 			handle.close();
-		} catch (DaoException e) {
-			log.error(e.getMessage(), e);
+		} catch (DaoException de) {
+			caught = de;
+		}
+		// TODO: weitere Aufräum-Aktionen
+		if (caught != null) {
+			// der Aufrufer (Controller) zeigt die Fehlermeldung an
+			throw caught;
 		}
 	}
 
