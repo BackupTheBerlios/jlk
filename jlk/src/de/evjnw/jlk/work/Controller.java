@@ -14,12 +14,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Controller.java,v 1.3 2009/09/04 21:11:35 sgrossnw Exp $
+   $Id: Controller.java,v 1.4 2009/10/06 20:26:49 sgrossnw Exp $
  */
 package de.evjnw.jlk.work;
 
 import org.apache.log4j.Logger;
 
+import de.evjnw.jlk.work.Visualizer.InfoType;
+import de.evjnw.jlk.work.dao.DaoConfigurationException;
+import de.evjnw.jlk.work.dao.DaoException;
 import de.evjnw.jlk.work.dao.DaoFactory;
 import de.evjnw.jlk.work.impl.DaoFactoryImpl;
 
@@ -29,7 +32,7 @@ import de.evjnw.jlk.work.impl.DaoFactoryImpl;
  */
 public class Controller implements Performer {
 
-	private static Logger log = Logger.getLogger(Performer.class);
+	private static Logger LOG = Logger.getLogger(Performer.class);
 	
 	/** 
 	 * dient zum Anzeigen des Zustands;
@@ -57,24 +60,6 @@ public class Controller implements Performer {
 	}
 
 	/**
-	 * @see de.evjnw.jlk.work.Performer#perform(de.evjnw.jlk.work.UiCommand)
-	 */
-	public void perform(UiCommand command) {
-		if (command == null) {
-			throw new IllegalArgumentException("command must not be null");
-		}
-		// TODO tu was
-		if (log.isInfoEnabled()) {
-			log.info("verb:"+command.getVerb());
-		}
-		if ("quit".equals(command.getVerb())) {
-			QuitAction action = new QuitAction();
-			action.setHandle((DaoFactoryImpl)daoFactory);
-			action.perform(command);
-		}
-	}
-
-	/**
 	 * @param daoFactory the daoFactory to set
 	 */
 	public void setDaoFactory(DaoFactory daoFactory) {
@@ -88,5 +73,30 @@ public class Controller implements Performer {
 		return daoFactory;
 	}
 	
-	
+	/**
+	 * @see de.evjnw.jlk.work.Performer#perform(de.evjnw.jlk.work.UiCommand)
+	 */
+	public void perform(UiCommand command) {
+		if (command == null) {
+			throw new IllegalArgumentException("command must not be null");
+		}
+		if (LOG.isInfoEnabled()) {
+			LOG.info("verb:"+command.getVerb());
+		}
+		try {
+			if ("quit".equals(command.getVerb())) {
+				QuitAction action = new QuitAction();
+				action.setHandle((DaoFactoryImpl)daoFactory);
+				action.perform(command);
+			}
+			// TODO tu was
+		} catch (DaoConfigurationException dce) {
+			LOG.fatal(dce.getMessage(), dce);
+			visualizer.presentInformation("Datenzugriffs-Fehler", "Die Konfiguration des Daten-Zugriffs enthält einen Fehler:\n"+dce.getMessage()+"\nSie sollten die Anwendung schnell beenden.", InfoType.ERROR);
+		} catch (DaoException de) {
+			LOG.error(de.getMessage(), de);
+			visualizer.presentInformation("Datenzugriffs-Fehler", "Beim Zugriff auf die Daten ist ein Fehler aufgetreten: "+de.getMessage(), InfoType.ERROR);
+		}
+	}
+
 }
