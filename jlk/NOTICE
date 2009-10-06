@@ -26,4 +26,17 @@ Third-party libraries, distributed under different licenses:
   homepage: http://sourceforge.net/projects/junit/ 
   This software is employed in the automated unit tests during the build process.
   It is covered by the Common Public License 1.0 (http://www.opensource.org/licenses/cpl1.0.php)
-  
+----
+TODO:
+* hsqldb.jar
+
+* hibernate3.jar
+* hibernate-configuration-3.0.dtd, hibernate-mapping-3.0.dtd 
+* antlr-2.7.6.jar
+* commons-collections-3.1.jar
+* dom4j-1.6.1.jar 
+* javassist-3.4.GA.jar
+* jta-1.1.jar
+* sl4j-api-1.5.2.jar
+* slfj-log4j12-1.5.2.jar
+ 
