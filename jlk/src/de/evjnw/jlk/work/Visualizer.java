@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Visualizer.java,v 1.3 2009/08/14 23:38:21 sgrossnw Exp $
+   $Id: Visualizer.java,v 1.4 2009/10/06 20:23:38 sgrossnw Exp $
  */
 package de.evjnw.jlk.work;
 
@@ -46,10 +46,12 @@ public interface Visualizer {
 	}
 	
 	/** 
-	 * Present a message to the user and wait for his reaction.  
+	 * Present a message to the user and wait for his reaction. 
+	 * Typical choices are: {OK}, {Yes,No}, {OK,Cancel}, {Yes,No,Cancel}.
 	 * @param title
 	 * @param message
-	 * @param choices the set of possible choices 
+	 * @param choices the set of possible choices, must not be empty 
+	 * @return the selected choice out of the given set
 	 */
 	public UserChoice askUser(String title, String message, Set<UserChoice> choices);  
 
