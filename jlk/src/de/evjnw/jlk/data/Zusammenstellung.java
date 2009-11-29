@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Zusammenstellung.java,v 1.4 2009/09/04 21:18:42 sgrossnw Exp $
+   $Id: Zusammenstellung.java,v 1.5 2009/11/29 13:56:58 ma08 Exp $
  */
 
 package de.evjnw.jlk.data;
@@ -107,6 +107,8 @@ public List<Anhang> getAnhang() {
 public void setAnhang(List<Anhang> anhang) {
 	this.anhang = anhang;
 }
-
+public void addAnhang(Anhang anhang) {
+	getAnhang().add(anhang);
+}
 }
 
