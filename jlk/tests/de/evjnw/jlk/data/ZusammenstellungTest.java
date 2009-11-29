@@ -23,7 +23,6 @@ public class ZusammenstellungTest extends TestCase {
 		Anhang anhang=new Anhang();
 		anhang.setAkkordart("Test1");
 		zs.addAnhang(anhang);
-		assertNotNull("Hat keinen Titel",zs.getTitel());
 		assertNotNull("Hat keine Anhangsliste",zs.getAnhang());
 	}
 
@@ -35,7 +34,7 @@ public class ZusammenstellungTest extends TestCase {
 		ang.setAkkordart("DMoll");
 		zs.addAnhang(ang);
 	}
-	public void testReadFavoriten() {
+	public void testReadAnhang() {
 		Zusammenstellung zs=new Zusammenstellung();
 		assertNotNull("Anhänge konnten nicht gelesen werden.", zs.getAnhang());
 	}

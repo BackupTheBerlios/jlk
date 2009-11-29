@@ -14,10 +14,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Zusammenstellung.java,v 1.5 2009/11/29 13:56:58 ma08 Exp $
+   $Id: Zusammenstellung.java,v 1.6 2009/11/29 14:01:01 ma08 Exp $
  */
 
 package de.evjnw.jlk.data;
+import java.util.ArrayList;
 import java.util.List;
 /**
  * Diese Klasse beinhaltet Zusammenstellungen. Für Liederhefte oder Songs bei Beatbox oder ähnlichem.
@@ -35,11 +36,11 @@ private String beschreibung;
 /**
  * Eine Liste mit allen zu der Zusammenstellung gehörenden Liedern
 */
-private List<Lied> lieder;
+private List<Lied> lieder= new ArrayList<Lied>();
 /**
  * Wenn direkte Anhänge zu einer Zusammenstellung vorhanden sind, dann kann man diese hier eintragen.
 */
-private List<Anhang> anhang;
+private List<Anhang> anhang= new ArrayList<Anhang>();
 
 	/** Default Constructor. */
 	public Zusammenstellung() {
