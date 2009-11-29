@@ -18,7 +18,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $$Id: Anhang.hbm.xml,v 1.4 2009/11/29 13:56:58 ma08 Exp $$
+   $$Id: Anhang.hbm.xml,v 1.5 2009/11/29 14:19:05 ma08 Exp $$
     -->
 <hibernate-mapping package="de.evjnw.jlk.data">
   <class name="Anhang">
@@ -35,10 +35,10 @@
 	<!-- TODO: ein Anhang kann doch wohl in mehreren Zusammenstellungen verwendet werden, 
 	  dann muss hier ein n:m Mapping rein (s. Hibernate Reference 1.3.2) -->
 	<!-- <many-to-one name="zusammenstellung" column="zusammenstellung"/> -->
-    <bag name="anhangZusammenstellung"
+    <bag name="zusammenstellung"
     	 table="zusammenstellungAnhang">
     <key column="anhang_id"/>
-    <many-to-many column="zusammenstellung_id" />
+    <many-to-many class="de.evjnw.jlk.data.Zusammenstellung" column="zusammenstellung_id" />
     </bag>
     
 	<property name="titel" />
