@@ -59,6 +59,7 @@ public class LiedDaoImplTest extends TestCase {
 	public void testLade() {
 		component.startTransaction();
 		Lied a = component.lade(1);
+		component.commitTransaction();
 		assertNotNull("Lied mit ID=1 kann nicht geladen werden", a);
 	}
 	@SuppressWarnings("unchecked")
@@ -71,6 +72,7 @@ public class LiedDaoImplTest extends TestCase {
 			Material m=(Material) mat.get(i);
 			assertNotNull(m.getAnhang());
 		}
+		component.commitTransaction();
 		assertNotNull("Material kann nicht gelesen werden.",a.getMaterial());
 		assertNotNull("Anhang kann nicht gelesen werden.");
 		assertNotNull("Lied mit ID=1 kann nicht geladen werden", a);
