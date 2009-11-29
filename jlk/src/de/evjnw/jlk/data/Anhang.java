@@ -14,9 +14,13 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Anhang.java,v 1.4 2009/04/04 18:01:53 ma08 Exp $
+   $Id: Anhang.java,v 1.5 2009/11/29 14:55:03 ma08 Exp $
  */
 package de.evjnw.jlk.data;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Diese Datenklasse beschreibt die Dateianhänge und speichert den Link zu der Datei
  * @author Mario Aldag
@@ -33,7 +37,7 @@ public class Anhang extends DataModell{
 	 * Die Zusammenstellung, in dem dieser Anhang verwendet wird.
 	 * Für Hibernate benötigt und darf auch nur von Hibernate zum schreiben genutzt werden.
 	 */
-	private Zusammenstellung zusammenstellung;
+	private List<Zusammenstellung> zusammenstellung=new ArrayList<Zusammenstellung>();
 	
 	/**
 	 * Der Titel des Anhangs. 
@@ -190,14 +194,14 @@ public class Anhang extends DataModell{
 	/**
 	 * @return the zusammenstelllung
 	 */
-	public Zusammenstellung getZusammenstellung() {
+	public List<Zusammenstellung> getZusammenstellung() {
 		return zusammenstellung;
 	}
 
 	/**
 	 * @param zusammenstelllung the zusammenstelllung to set
 	 */
-	public void setZusammenstellung(Zusammenstellung zusammenstellung) {
+	public void setZusammenstellung(List<Zusammenstellung> zusammenstellung) {
 		this.zusammenstellung = zusammenstellung;
 	}
 	
