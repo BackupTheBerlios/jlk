@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: View.java,v 1.2 2009/10/06 20:33:03 sgrossnw Exp $
+   $Id: View.java,v 1.3 2009/12/16 11:09:08 sgrossnw Exp $
  */
 package de.evjnw.jlk.ui;
 
@@ -23,6 +23,8 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import de.evjnw.jlk.data.DataModell;
+import de.evjnw.jlk.work.Performer;
+import de.evjnw.jlk.work.Visualizer;
 
 /**
  * Dieses Interface bildet die gleichförmige Schnittstelle für alle Formen der Darstellungen.
@@ -35,8 +37,10 @@ public interface View {
 	 * 
 	 * @param actionPane hier sollen die Kontrollelemente (insbesondere Buttons) hinein
 	 * @param detailPane der allgemeine Ein-/Ausgabebereich
+	 * @param visualizer für weitere Darstellungen (Mitteilungen, Rückfragen, Wechsel des Views)
+	 * @param performer für Aktionen
 	 */
-	public void init(JPanel actionPane, JPanel detailPane);
+	public void init(JPanel actionPane, JPanel detailPane, Visualizer visualizer, Performer performer);
 	
 	/**
 	 * Übergibt die Objekte zur Anzeige an den konkreten View.
