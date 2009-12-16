@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-   $Id: Frame.java,v 1.10 2009/10/06 20:29:44 sgrossnw Exp $
+   $Id: Frame.java,v 1.11 2009/12/16 11:10:05 sgrossnw Exp $
  */
 package de.evjnw.jlk.ui;
 
@@ -38,6 +38,7 @@ import javax.swing.JPanel;
 import org.apache.log4j.Logger;
 
 import de.evjnw.jlk.data.DataModell;
+import de.evjnw.jlk.ui.impl.NewModelView;
 import de.evjnw.jlk.work.Performer;
 import de.evjnw.jlk.work.UiCommand;
 import de.evjnw.jlk.work.Visualizer;
@@ -93,6 +94,11 @@ public class Frame implements Visualizer, ActionListener {
 	private final JPanel detailPane = new JPanel();
 	
 	/**
+	 * der aktuell angezeigte View
+	 */
+	private View currentView = null;
+	
+	/**
 	 * @param performer the performer to set
 	 */
 	public void setPerformer(Performer performer) {
@@ -143,11 +149,11 @@ public class Frame implements Visualizer, ActionListener {
 		gbc.gridy = 1;
 		gbc.insets = new Insets(0, 8, 0, 8);
 		gbc.fill = GridBagConstraints.HORIZONTAL;
-		contentPane.add(Box.createHorizontalStrut(200), gbc);
+		contentPane.add(Box.createHorizontalStrut(300), gbc);
 
 		gbc.gridx = 1;
 		gbc.gridy = 1;
-		contentPane.add(Box.createHorizontalStrut(300), gbc);
+		contentPane.add(Box.createHorizontalStrut(400), gbc);
 
 		gbc.gridx = 2;
 		gbc.gridy = 0;
@@ -282,12 +288,15 @@ public class Frame implements Visualizer, ActionListener {
 		JOptionPane.showMessageDialog(appFrame, message, title, messageType);
 	}
 
-	/** {@inheritDoc} */
-	public void display(String view, List<DataModell> models, List<Object> data) {
-		if ("new".equals(view)) {
-			throw new DaoException("es gibt noch keine Implementierung für neue Datensätze");
+	@Override
+	public void display(String viewName, List<DataModell> models, List<Object> data) {
+		if ("new".equals(viewName)) {
+			View view = new NewModelView();
+			view.init(actionPane, detailPane, this, performer);
+			currentView = view;
+			view.display(viewName, models, data);
 		}
-		if ("edit".equals(view)) {
+		if ("edit".equals(viewName)) {
 			throw new DaoException("es gibt noch keine Implementierung für die Bearbeitung von Datensätzen");
 		}
 		// TODO Auto-generated method stub
